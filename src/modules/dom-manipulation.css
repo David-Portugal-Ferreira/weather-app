@@ -1,0 +1,10 @@
+.card {
+    display: flex;
+    flex-direction: column;
+    width: 275px;
+    height: 400px;
+}
+.card-header h2, 
+.card-header h3 {
+    display: inline-block;
+}

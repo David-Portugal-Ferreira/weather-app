@@ -1,4 +1,4 @@
-// QuerySelect HTML elements
+import "./dom-manipulation.css";
 const wrapper = document.querySelector(".wrapper");
 const resolvedAddress = document.querySelector(".resolvedAddress");
 const timezone = document.querySelector(".timezone");
@@ -16,36 +16,41 @@ function constructCard(
   windDirValue,
 ) {
   const card = document.createElement("div");
+  card.classList.add("card");
+
+  const cardHeader = document.createElement("div");
+  cardHeader.classList.add("card-header")
 
   const conditions = document.createElement("h2");
   conditions.innerText = conditionsValue;
+  cardHeader.appendChild(conditions);
 
   const datetime = document.createElement("h3");
   datetime.innerText = datetimeValue;
+  cardHeader.appendChild(datetime);
 
   const description = document.createElement("p");
-  description.innerText = descriptionValue;
+  description.innerText = `Description: ${descriptionValue}`;
 
   const temp = document.createElement("p");
-  temp.innerText = tempValue;
+  temp.innerText = `Temp: ${tempValue}°c`;
 
   const tempMax = document.createElement("p");
-  tempMax.innerText = tempMaxValue;
+  tempMax.innerText = `Max Temp ${tempMaxValue}°c`;
 
   const tempMin = document.createElement("p");
-  tempMin.innerText = tempMinValue;
+  tempMin.innerText = `Min Temp ${tempMinValue}°c`;
 
   const uvIndex = document.createElement("p");
-  uvIndex.innerText = uvIndexValue;
+  uvIndex.innerText = `UV ${uvIndexValue}`;
 
   const windSpeed = document.createElement("p");
-  windSpeed.innerText = windSpeedValue;
+  windSpeed.innerText = `Wind speed ${windSpeedValue}`;
 
   const windDir = document.createElement("p");
-  windDir.innerText = windDirValue;
+  windDir.innerText = `Winde Direction ${windDirValue}`;
 
-  card.appendChild(conditions);
-  card.appendChild(datetime);
+  card.appendChild(cardHeader);
   card.appendChild(description);
   card.appendChild(temp);
   card.appendChild(tempMax);
