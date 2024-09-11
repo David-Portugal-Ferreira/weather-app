@@ -30,7 +30,7 @@ function constructCard(
   cardHeader.appendChild(datetime);
 
   const description = document.createElement("p");
-  description.innerText = `Description: ${descriptionValue}`;
+  description.innerText = `${descriptionValue}`;
 
   const temp = document.createElement("p");
   temp.innerText = `Temp: ${tempValue}°c`;
@@ -62,4 +62,10 @@ function constructCard(
   fiveDaysWeather.appendChild(card);
 }
 
-export { resolvedAddress, timezone, constructCard };
+function clearInfoFromDivs() {
+    resolvedAddress.replaceChildren();
+    timezone.replaceChildren();
+    fiveDaysWeather.replaceChildren();
+}
+
+export { resolvedAddress, timezone, constructCard, clearInfoFromDivs };
