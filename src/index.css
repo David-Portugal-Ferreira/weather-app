@@ -1,0 +1,29 @@
+body {
+    margin: 0;
+    pad: 0;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+}
+
+.wrapper {
+    background-color: aqua;
+}
+
+.resolvedAddress {
+    background-color: azure;
+}
+
+.timezone {
+    background-color: blue;
+}
+
+.five-days-weather {
+    background-color: cadetblue;
+}
+
+.footer {
+    background-color: yellow;
+}
