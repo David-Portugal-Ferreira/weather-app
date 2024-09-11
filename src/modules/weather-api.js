@@ -7,10 +7,14 @@ async function fetchWeatherInfo(city = "tomar") {
         headers: {},
       },
     );
-    let data = await response.json();
-    return data;
+    if (response.ok) {
+      let data = await response.json();
+      return data;
+    } else {
+      throw new Error(response.status);
+    }
   } catch (err) {
-    alert(err);
+    return err;
   }
 }
 

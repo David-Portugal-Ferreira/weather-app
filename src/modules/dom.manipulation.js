@@ -19,7 +19,7 @@ function constructCard(
   card.classList.add("card");
 
   const cardHeader = document.createElement("div");
-  cardHeader.classList.add("card-header")
+  cardHeader.classList.add("card-header");
 
   const conditions = document.createElement("h2");
   conditions.innerText = conditionsValue;
@@ -32,17 +32,23 @@ function constructCard(
   const description = document.createElement("p");
   description.innerText = `${descriptionValue}`;
 
+    const temperatureDiv = document.createElement("div");
+
   const temp = document.createElement("p");
   temp.innerText = `Temp: ${tempValue}°c`;
+  temperatureDiv.appendChild(temp);
 
   const tempMax = document.createElement("p");
   tempMax.innerText = `Max Temp ${tempMaxValue}°c`;
+  temperatureDiv.appendChild(tempMax);
 
   const tempMin = document.createElement("p");
   tempMin.innerText = `Min Temp ${tempMinValue}°c`;
+  temperatureDiv.appendChild(tempMin);
 
   const uvIndex = document.createElement("p");
   uvIndex.innerText = `UV ${uvIndexValue}`;
+  uvIndex.classList.add(uvIndexColor(uvIndexValue));
 
   const windSpeed = document.createElement("p");
   windSpeed.innerText = `Wind speed ${windSpeedValue}`;
@@ -52,9 +58,7 @@ function constructCard(
 
   card.appendChild(cardHeader);
   card.appendChild(description);
-  card.appendChild(temp);
-  card.appendChild(tempMax);
-  card.appendChild(tempMin);
+  card.appendChild(temperatureDiv);
   card.appendChild(uvIndex);
   card.appendChild(windSpeed);
   card.appendChild(windDir);
@@ -63,9 +67,17 @@ function constructCard(
 }
 
 function clearInfoFromDivs() {
-    resolvedAddress.replaceChildren();
-    timezone.replaceChildren();
-    fiveDaysWeather.replaceChildren();
+  resolvedAddress.replaceChildren();
+  timezone.replaceChildren();
+  fiveDaysWeather.replaceChildren();
+}
+
+function uvIndexColor(uvIndexValue) {
+  if (uvIndexValue <= 2) return "low-uv-index";
+  if (uvIndexValue >= 3 && uvIndexValue <= 5) return "moderate-uv-index";
+  if (uvIndexValue >= 6 && uvIndexValue <= 7) return "high-uv-index";
+  if (uvIndexValue >= 8 && uvIndexValue <= 10) return "veryhigh-uv-index";
+  if (uvIndexValue >= 11) return "extreme-uv-index";
 }
 
 export { resolvedAddress, timezone, constructCard, clearInfoFromDivs };
