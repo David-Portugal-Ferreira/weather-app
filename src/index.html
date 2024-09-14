@@ -1,25 +1,195 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Weather App</title>
-</head>
-<body>
-    <div class="header">
-        <h1>Weather App</h1>
-        <form>
-            <input type="search" id="search-input" required />
-            <input type="submit" value="Search" />
-        </form>
-    </div>
+  </head>
+  <body>
     <div class="wrapper">
-        <div class="resolvedAddress"></div>
-        <div class="timezone"></div>
-        <div class="five-days-weather"></div>
+      <div class="header">
+        <h2>Title</h2>
+        <input type="search" />
+        <input type="submit" value="search" />
+      </div>
+
+      <div class="content">
+        <div class="current-search"></div>
+
+        <div class="days-row">
+          <div class="first-row">
+            <div class="first-day">
+              <div class="card-header">
+                <p class="datetime">datetime</p>
+                <p class="conditions">conditions</p>
+              </div>
+              <div class="card-description">
+                <p class="description">description</p>
+              </div>
+              <div class="card-temp">
+                <p class="tempmin">tempmin</p>
+                <p class="temp">temp</p>
+                <p class="tempmax">tempmax</p>
+                <p class="uvindex">uvindex</p>
+              </div>
+              <div class="card-rain">
+                <p class="precip">precip</p>
+                <p class="precipprob">precipprob</p>
+                <p class="humidity">humidity</p>
+              </div>
+              <div class="card-wind">
+                <p class="windspeed">windspeed</p>
+                <p class="winddir">winddir</p>
+                <p class="windspeedmax">windspeedmax</p>
+              </div>
+              <div class="card-snow">
+                <p class="snow">snow</p>
+                <p class="snowdepth">snowdepth</p>
+              </div>
+              <div class="card-more">
+                <p class="by-hour">by hour...</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="second-row">
+            <div class="second-day">
+              <div class="card-header">
+                <p class="datetime">datetime</p>
+                <p class="conditions">conditions</p>
+              </div>
+              <div class="card-description">
+                <p class="description">description</p>
+              </div>
+              <div class="card-temp">
+                <p class="tempmin">tempmin</p>
+                <p class="temp">temp</p>
+                <p class="tempmax">tempmax</p>
+                <p class="uvindex">uvindex</p>
+              </div>
+              <div class="card-rain">
+                <p class="precip">precip</p>
+                <p class="precipprob">precipprob</p>
+                <p class="humidity">humidity</p>
+              </div>
+              <div class="card-wind">
+                <p class="windspeed">windspeed</p>
+                <p class="winddir">winddir</p>
+                <p class="windspeedmax">windspeedmax</p>
+              </div>
+              <div class="card-snow">
+                <p class="snow">snow</p>
+                <p class="snowdepth">snowdepth</p>
+              </div>
+              <div class="card-more">
+                <p class="by-hour">by hour...</p>
+              </div>
+            </div>
+            <div class="third-day">
+              <div class="card-header">
+                <p class="datetime">datetime</p>
+                <p class="conditions">conditions</p>
+              </div>
+              <div class="card-description">
+                <p class="description">description</p>
+              </div>
+              <div class="card-temp">
+                <p class="tempmin">tempmin</p>
+                <p class="temp">temp</p>
+                <p class="tempmax">tempmax</p>
+                <p class="uvindex">uvindex</p>
+              </div>
+              <div class="card-rain">
+                <p class="precip">precip</p>
+                <p class="precipprob">precipprob</p>
+                <p class="humidity">humidity</p>
+              </div>
+              <div class="card-wind">
+                <p class="windspeed">windspeed</p>
+                <p class="winddir">winddir</p>
+                <p class="windspeedmax">windspeedmax</p>
+              </div>
+              <div class="card-snow">
+                <p class="snow">snow</p>
+                <p class="snowdepth">snowdepth</p>
+              </div>
+              <div class="card-more">
+                <p class="by-hour">by hour...</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="third-row">
+            <div class="fourth-day">
+              <div class="card-header">
+                <p class="datetime">datetime</p>
+                <p class="conditions">conditions</p>
+              </div>
+              <div class="card-description">
+                <p class="description">description</p>
+              </div>
+              <div class="card-temp">
+                <p class="tempmin">tempmin</p>
+                <p class="temp">temp</p>
+                <p class="tempmax">tempmax</p>
+                <p class="uvindex">uvindex</p>
+              </div>
+              <div class="card-rain">
+                <p class="precip">precip</p>
+                <p class="precipprob">precipprob</p>
+                <p class="humidity">humidity</p>
+              </div>
+              <div class="card-wind">
+                <p class="windspeed">windspeed</p>
+                <p class="winddir">winddir</p>
+                <p class="windspeedmax">windspeedmax</p>
+              </div>
+              <div class="card-snow">
+                <p class="snow">snow</p>
+                <p class="snowdepth">snowdepth</p>
+              </div>
+              <div class="card-more">
+                <p class="by-hour">by hour...</p>
+              </div>
+            </div>
+
+            <div class="fifth-day">
+              <div class="card-header">
+                <p class="datetime">datetime</p>
+                <p class="conditions">conditions</p>
+              </div>
+              <div class="card-description">
+                <p class="description">description</p>
+              </div>
+              <div class="card-temp">
+                <p class="tempmin">tempmin</p>
+                <p class="temp">temp</p>
+                <p class="tempmax">tempmax</p>
+                <p class="uvindex">uvindex</p>
+              </div>
+              <div class="card-rain">
+                <p class="precip">precip</p>
+                <p class="precipprob">precipprob</p>
+                <p class="humidity">humidity</p>
+              </div>
+              <div class="card-wind">
+                <p class="windspeed">windspeed</p>
+                <p class="winddir">winddir</p>
+                <p class="windspeedmax">windspeedmax</p>
+              </div>
+              <div class="card-snow">
+                <p class="snow">snow</p>
+                <p class="snowdepth">snowdepth</p>
+              </div>
+              <div class="card-more">
+                <p class="by-hour">by hour...</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer"></div>
     </div>
-    <div class="footer">
-        
-    </div>
-</body>
+  </body>
 </html>
