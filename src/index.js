@@ -5,7 +5,7 @@ import * as form from "./modules/form-handler.js";
 
 // loadInitialData();
 
-async function loadInitialData() {
+/* async function loadInitialData() {
   const tempo = await weather.fetchWeatherInfo();
   dom.resolvedAddress.innerText = tempo.resolvedAddress;
   dom.timezone.innerText = tempo.timezone;
@@ -43,6 +43,6 @@ async function loadDataFromInput(city) {
       );
     }
   }
-}
+} */
 
-export { loadDataFromInput };
+/* export { loadDataFromInput }; */

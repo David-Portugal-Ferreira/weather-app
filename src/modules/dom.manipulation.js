@@ -1,10 +1,33 @@
 import "./dom-manipulation.css";
-const wrapper = document.querySelector(".wrapper");
-const resolvedAddress = document.querySelector(".resolvedAddress");
-const timezone = document.querySelector(".timezone");
-const fiveDaysWeather = document.querySelector(".five-days-weather");
+import { fetchWeatherInfo } from "./weather-api";
 
-function constructCard(
+const weatherData = await fetchWeatherInfo();
+
+const elements = {
+  datetime: document.querySelectorAll(".datetime"),
+  conditions: document.querySelectorAll(".conditions"),
+  description: document.querySelectorAll(".description"),
+  tempmin: document.querySelectorAll(".tempmin"),
+  temp: document.querySelectorAll(".temp"),
+  tempmax: document.querySelectorAll(".tempmax"),
+  uvindex: document.querySelectorAll(".uvindex"),
+  precip: document.querySelectorAll(".precip"),
+  precipprob: document.querySelectorAll(".precipprob"),
+  humidity: document.querySelectorAll(".humidity"),
+  windspeed: document.querySelectorAll(".windspeed"),
+  winddir: document.querySelectorAll(".winddir"),
+  windspeedmax: document.querySelectorAll(".windspeedmax"),
+  snow: document.querySelectorAll(".snow"),
+  snowdepth: document.querySelectorAll(".snowdepth"),
+};
+
+Object.keys(elements).forEach( (element) => {
+  elements[element].forEach( (test, testIndex) => {
+    test.innerText = `${element}: ${weatherData.days[testIndex][element]}`;
+  })
+});
+
+/* function constructCard(
   conditionsValue,
   datetimeValue,
   descriptionValue,
@@ -64,7 +87,7 @@ function constructCard(
   card.appendChild(windDir);
 
   fiveDaysWeather.appendChild(card);
-}
+} */
 
 function clearInfoFromDivs() {
   resolvedAddress.replaceChildren();
@@ -80,4 +103,4 @@ function uvIndexColor(uvIndexValue) {
   if (uvIndexValue >= 11) return "extreme-uv-index";
 }
 
-export { resolvedAddress, timezone, constructCard, clearInfoFromDivs };
+export {};
