@@ -1,7 +1,33 @@
 import "./dom-manipulation.css";
 import { fetchWeatherInfo } from "./weather-api";
 
-const weatherData = await fetchWeatherInfo();
+// const weatherData = await fetchWeatherInfo();
+
+// const elements = {
+//   datetime: document.querySelectorAll(".datetime"),
+//   conditions: document.querySelectorAll(".conditions"),
+//   description: document.querySelectorAll(".description"),
+//   tempmin: document.querySelectorAll(".tempmin"),
+//   temp: document.querySelectorAll(".temp"),
+//   tempmax: document.querySelectorAll(".tempmax"),
+//   uvindex: document.querySelectorAll(".uvindex"),
+//   precip: document.querySelectorAll(".precip"),
+//   precipprob: document.querySelectorAll(".precipprob"),
+//   humidity: document.querySelectorAll(".humidity"),
+//   windspeed: document.querySelectorAll(".windspeed"),
+//   winddir: document.querySelectorAll(".winddir"),
+//   windspeedmax: document.querySelectorAll(".windspeedmax"),
+//   snow: document.querySelectorAll(".snow"),
+//   snowdepth: document.querySelectorAll(".snowdepth"),
+// };
+
+// Object.keys(elements).forEach( (element) => {
+//   elements[element].forEach( (test, testIndex) => {
+//     test.innerText = `${element}: ${weatherData.days[testIndex][element]}`;
+//   })
+// });
+
+const currentSearch = document.querySelector(".current-search")
 
 const elements = {
   datetime: document.querySelectorAll(".datetime"),
@@ -21,11 +47,17 @@ const elements = {
   snowdepth: document.querySelectorAll(".snowdepth"),
 };
 
-Object.keys(elements).forEach( (element) => {
-  elements[element].forEach( (test, testIndex) => {
-    test.innerText = `${element}: ${weatherData.days[testIndex][element]}`;
-  })
-});
+async function loadFiveCards(city) {
+  const weatherData = await fetchWeatherInfo(city);
+
+  currentSearch.innerText = weatherData.resolvedAddress
+
+  Object.keys(elements).forEach((element) => {
+    elements[element].forEach((test, testIndex) => {
+      test.innerText = `${element}: ${weatherData.days[testIndex][element]}`;
+    });
+  });
+}
 
 /* function constructCard(
   conditionsValue,
@@ -89,11 +121,11 @@ Object.keys(elements).forEach( (element) => {
   fiveDaysWeather.appendChild(card);
 } */
 
-function clearInfoFromDivs() {
-  resolvedAddress.replaceChildren();
-  timezone.replaceChildren();
-  fiveDaysWeather.replaceChildren();
-}
+// function clearInfoFromDivs() {
+//   resolvedAddress.replaceChildren();
+//   timezone.replaceChildren();
+//   fiveDaysWeather.replaceChildren();
+// }
 
 function uvIndexColor(uvIndexValue) {
   if (uvIndexValue <= 2) return "low-uv-index";
@@ -103,4 +135,4 @@ function uvIndexColor(uvIndexValue) {
   if (uvIndexValue >= 11) return "extreme-uv-index";
 }
 
-export {};
+export { loadFiveCards };
