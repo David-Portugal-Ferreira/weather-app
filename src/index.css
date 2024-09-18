@@ -49,6 +49,7 @@ body {
 .fifth-day {
     display: flex;
     flex-direction: column;
+    flex: 1 1 0;
     margin: 25px;
     padding: 5px;
     width: 350px;
