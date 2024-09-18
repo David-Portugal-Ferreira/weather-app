@@ -50,12 +50,17 @@ async function loadFiveCards(city) {
   Object.keys(elements).forEach((element) => {
     // TODO - Change 'test' and 'testIndex' names
     elements[element].forEach((test, testIndex) => {
+      if (element === "datetime") {
+        convertDayToWeekDay(test, weatherData.days[testIndex][element]);
+        return;
+      }
       if(element === 'winddir') {
         windDirection(test, weatherData.days[testIndex][element]);
         return;
       }
-      if (element === "snow" /* && weatherData.days[testIndex][element] <= 0 */) {
-        removeSnowDiv(testIndex);
+      if (element === "snow" && weatherData.days[testIndex][element] <= 0) {
+        removeSnowDiv(testIndex, weatherData.days[testIndex][element]);
+        return;
       }
       test.innerText = `${weatherData.days[testIndex][element]}`;
     });
@@ -97,10 +102,14 @@ function windDirection(test, windDir) {
   }
 }
 
-function removeSnowDiv(testIndex) {
+function removeSnowDiv(testIndex, weather) {
   const snowCards = document.querySelectorAll(".card-snow");
-  console.log(snowCards, testIndex);
   snowCards[testIndex].replaceChildren();
+}
+
+function convertDayToWeekDay(test, date) {
+  let weekDay = new Date(date).getDay();
+  test.innerText = weekDays[weekDay];
 }
 
 /* function constructCard(

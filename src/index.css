@@ -21,9 +21,13 @@ body {
     align-items: center;
 }
 .current-search {
-    height: 25px;
-    width: 250px;
-    background-color: aquamarine;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30px;
+    width: 350px;
+    font-size: 25px;
+    margin-top: 20px;
 }
 .days-row {
     display: flex;
