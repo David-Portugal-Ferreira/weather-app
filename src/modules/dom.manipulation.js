@@ -1,32 +1,6 @@
 import "./dom-manipulation.css";
 import { fetchWeatherInfo } from "./weather-api";
 
-// const weatherData = await fetchWeatherInfo();
-
-// const elements = {
-//   datetime: document.querySelectorAll(".datetime"),
-//   conditions: document.querySelectorAll(".conditions"),
-//   description: document.querySelectorAll(".description"),
-//   tempmin: document.querySelectorAll(".tempmin"),
-//   temp: document.querySelectorAll(".temp"),
-//   tempmax: document.querySelectorAll(".tempmax"),
-//   uvindex: document.querySelectorAll(".uvindex"),
-//   precip: document.querySelectorAll(".precip"),
-//   precipprob: document.querySelectorAll(".precipprob"),
-//   humidity: document.querySelectorAll(".humidity"),
-//   windspeed: document.querySelectorAll(".windspeed"),
-//   winddir: document.querySelectorAll(".winddir"),
-//   windspeedmax: document.querySelectorAll(".windspeedmax"),
-//   snow: document.querySelectorAll(".snow"),
-//   snowdepth: document.querySelectorAll(".snowdepth"),
-// };
-
-// Object.keys(elements).forEach( (element) => {
-//   elements[element].forEach( (test, testIndex) => {
-//     test.innerText = `${element}: ${weatherData.days[testIndex][element]}`;
-//   })
-// });
-
 const currentSearch = document.querySelector(".current-search")
 
 const elements = {
@@ -47,16 +21,86 @@ const elements = {
   snowdepth: document.querySelectorAll(".snowdepth"),
 };
 
+const icons = {
+  north: 'N <i class="fa-solid fa-arrow-up"></i>',
+  northEast: 'NE <i class="fa-solid fa-arrow-right northeast"></i>',
+  east: 'E <i class="fa-solid fa-arrow-right"></i>',
+  southEast: 'SE <i class="fa-solid fa-arrow-right southeast"></i>',
+  south: 'S <i class="fa-solid fa-arrow-down"></i>',
+  southWest: 'SW <i class="fa-solid fa-arrow-right southwest"></i>',
+  west: 'W <i class="fa-solid fa-arrow-left"></i>',
+  northWest: 'NW <i class="fa-solid fa-arrow-right northwest"></i>'
+}
+
+const weekDays = {
+  0: "Sunday",
+  1: "Monday",
+  2: "Tuesday",
+  3: "Wendsdays",
+  4: "Thursday",
+  5: "Friday",
+  6: "Saturday",
+}
+
 async function loadFiveCards(city) {
   const weatherData = await fetchWeatherInfo(city);
 
   currentSearch.innerText = weatherData.resolvedAddress
 
   Object.keys(elements).forEach((element) => {
+    // TODO - Change 'test' and 'testIndex' names
     elements[element].forEach((test, testIndex) => {
-      test.innerText = `${element}: ${weatherData.days[testIndex][element]}`;
+      if(element === 'winddir') {
+        windDirection(test, weatherData.days[testIndex][element]);
+        return;
+      }
+      if (element === "snow" /* && weatherData.days[testIndex][element] <= 0 */) {
+        removeSnowDiv(testIndex);
+      }
+      test.innerText = `${weatherData.days[testIndex][element]}`;
     });
   });
+}
+
+function windDirection(test, windDir) {
+  if(windDir >= -22.5 && windDir <= 22.5) {
+    test.innerHTML = icons.north;
+    return
+  }
+  if(windDir >= 22.6 && windDir <= 67.5) {
+    test.innerHTML = icons.northEast;
+    return
+  }
+  if(windDir >= 67.6 && windDir <= 112.5) {
+    test.innerHTML = icons.east;
+    return
+  }
+  if(windDir >= 112.6 && windDir <= 157.5) {
+    test.innerHTML = icons.southEast;
+    return
+  }
+  if(windDir >= 157.6 && windDir <= 202.5) {
+    test.innerHTML = icons.south;
+    return
+  }
+  if(windDir >= 202.6 && windDir <= 247.5) {
+    test.innerHTML = icons.southWest;
+    return
+  }
+  if(windDir >= 247.6 && windDir <= 292.5) {
+    test.innerHTML = icons.west;
+    return
+  }
+  if(windDir >= 292.6 && windDir <= 337.5) {
+    test.innerHTML = icons.northWest;
+    return
+  }
+}
+
+function removeSnowDiv(testIndex) {
+  const snowCards = document.querySelectorAll(".card-snow");
+  console.log(snowCards, testIndex);
+  snowCards[testIndex].replaceChildren();
 }
 
 /* function constructCard(
@@ -120,12 +164,6 @@ async function loadFiveCards(city) {
 
   fiveDaysWeather.appendChild(card);
 } */
-
-// function clearInfoFromDivs() {
-//   resolvedAddress.replaceChildren();
-//   timezone.replaceChildren();
-//   fiveDaysWeather.replaceChildren();
-// }
 
 function uvIndexColor(uvIndexValue) {
   if (uvIndexValue <= 2) return "low-uv-index";

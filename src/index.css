@@ -46,7 +46,10 @@ body {
     display: flex;
     flex-direction: column;
     margin: 25px;
-    width: 300px;
+    padding: 5px;
+    width: 350px;
+    border: 1px solid red;
+    border-radius: 20px;
 }
 
 .card-header,
@@ -57,7 +60,9 @@ body {
 .card-snow,
 .card-more {
     display: flex;
-    gap: 5px;
+    justify-content: center;
+
+    gap: 20px;
 }
 
 

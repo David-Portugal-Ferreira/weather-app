@@ -1,34 +1,51 @@
+@import '@fortawesome/fontawesome-free/css/all.css';
+
 .card {
-    display: flex;
-    flex-direction: column;
-    width: 400px;
-    height: 400px;
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  height: 400px;
 }
 .card-header {
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 }
-.card-header h2, 
+.card-header h2,
 .card-header h3 {
-    display: inline-block;
+  display: inline-block;
 }
 
 .low-uv-index {
-    border: 1px solid green;
+  border: 1px solid green;
 }
 
 .moderate-uv-index {
-    border: 1px solid yellow;
+  border: 1px solid yellow;
 }
 
 .high-uv-index {
-    border: 1px solid orange;
+  border: 1px solid orange;
 }
 
 .veryhigh-uv-index {
-    border: 1px solid red;
+  border: 1px solid red;
 }
 
 .extreme-uv-index {
-    border: 1px solid purple;
+  border: 1px solid purple;
+}
+
+.fa-solid.northwest {
+  transform: rotate(-135deg);
+  width: 10px;
+  height: 10px;
+}
+.fa-solid.northeast {
+  transform: rotate(-45deg);
+}
+.fa-solid.southeast {
+  transform: rotate(45deg);
+}
+.fa-solid.southwest {
+  transform: rotate(135deg);
 }
