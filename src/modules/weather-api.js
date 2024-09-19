@@ -36,8 +36,6 @@ function compareDate(datetime) {
   let year = new Date().getFullYear()
   const fullYear = `${year}-${todayMonth}-${day}`;
 
-  console.log(fullYear)
-
   if (datetime === fullYear ) {
     return true
   } else {

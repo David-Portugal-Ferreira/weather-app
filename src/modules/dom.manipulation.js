@@ -1,11 +1,11 @@
 import "./dom-manipulation.css";
 import { fetchWeatherInfo } from "./weather-api";
 
-
 const form = document.querySelector("form");
 const formSearchButton = document.querySelector("button[type=submit]");
 const currentSearch = document.querySelector(".current-search");
 
+const wrapper = document.querySelector(".wrapper");
 const contentDiv = document.querySelector(".content");
 const daysRowDiv = document.querySelector(".days-row");
 const byHour = document.querySelectorAll(".by-hour");
@@ -85,8 +85,8 @@ async function loadFiveCards(city) {
 byHour.forEach((element, index) => {
   element.addEventListener("click", () => {
     weatherByHour(index);
-  })
-})
+  });
+});
 
 function windDirection(test, windDir) {
   if (windDir >= 337.6 || windDir <= 22.5) {
@@ -164,70 +164,96 @@ function loadingScreen(action) {
 }
 
 function weatherByHour(index) {
-  alert(index);
+  daysRowDiv.style.display = "none";
+  const hours = getHours(index);
+  hours.map((hour) => {
+
+    const card = document.createElement("div");
+    card.classList = "card-by-hours";
+
+    const cardHeader = document.createElement("div");
+    cardHeader.classList = "card-header-by-hour";
+    const datetime = document.createElement("p");
+    datetime.innerText = hour.datetime;
+    const conditions = document.createElement("p");
+    conditions.innerText = hour.conditions;
+    cardHeader.appendChild(datetime);
+    cardHeader.appendChild(conditions);
+
+
+    const cardRain = document.createElement("div");
+    cardRain.classList = "card-rain-by-hour";
+    const precip = document.createElement("p");
+    precip.innerText  = hour.precip;
+    const precipProb = document.createElement("p");
+    precipProb.innerText  = hour.precipprob;
+    const humidity = document.createElement("p");
+    humidity.innerText  = hour.humidity;
+    const pressure = document.createElement("p");
+    pressure.innerText  = hour.pressure;
+
+    cardRain.appendChild(precip);
+    cardRain.appendChild(precipProb);
+    cardRain.appendChild(humidity);
+    cardRain.appendChild(pressure);
+
+
+    const cardSnow = document.createElement("div");
+    cardSnow.classList = "card-snow-by-hour";
+    const snow = document.createElement("p");
+    snow.innerText  = hour.snow;
+    const snowDepth = document.createElement("p");
+    snowDepth.innerText  = hour.snowdepth;
+
+    cardSnow.appendChild(snow);
+    cardSnow.appendChild(snowDepth);
+
+
+    const cardTemp = document.createElement("div");
+    cardTemp.classList = "card-temp-by-hour";
+    const temp = document.createElement("p");
+    temp.innerText  = hour.temp;
+    const uvindex = document.createElement("p");
+    uvindex.innerText  = hour.uvindex;
+
+    cardTemp.appendChild(temp);
+    cardTemp.appendChild(uvindex);
+
+
+    const cardWind = document.createElement("div");
+    cardWind.classList = "card-wind-by-hour";
+    const windDir = document.createElement("p");
+    windDir.innerText  = hour.winddir;
+    const windSpeed = document.createElement("p");
+    windSpeed.innerText  = hour.windspeed;
+
+    cardWind.appendChild(windDir);
+    cardWind.appendChild(windSpeed);
+
+    card.appendChild(cardHeader);
+    card.appendChild(cardTemp);
+    card.appendChild(cardRain);
+    card.appendChild(cardSnow);
+    card.appendChild(cardWind)
+  
+    contentDiv.appendChild(card);
+  });
 }
 
-/*
-function constructCard(
-  conditionsValue,
-  datetimeValue,
-  descriptionValue,
-  tempValue,
-  tempMaxValue,
-  tempMinValue,
-  uvIndexValue,
-  windSpeedValue,
-  windDirValue,
-) {
-  const card = document.createElement("div");
-  card.classList.add("card");
+function getHours(index) {
+  const data = JSON.parse(localStorage.getItem("weather"));
+  const hours = [];
+  const timeNow = parseInt(new Date().valueOf() / 1000);
+  data.days[index].hours.forEach((hour) => {
+    if (hour.datetimeEpoch >= timeNow) {
+      hours.push(hour);
+    }
+  });
+  return hours;
+}
 
-  const cardHeader = document.createElement("div");
-  cardHeader.classList.add("card-header");
+function createControls() {
 
-  const conditions = document.createElement("h2");
-  conditions.innerText = conditionsValue;
-  cardHeader.appendChild(conditions);
-
-  const datetime = document.createElement("h3");
-  datetime.innerText = datetimeValue;
-  cardHeader.appendChild(datetime);
-
-  const description = document.createElement("p");
-  description.innerText = `${descriptionValue}`;
-
-    const temperatureDiv = document.createElement("div");
-
-  const temp = document.createElement("p");
-  temp.innerText = `Temp: ${tempValue}°c`;
-  temperatureDiv.appendChild(temp);
-
-  const tempMax = document.createElement("p");
-  tempMax.innerText = `Max Temp ${tempMaxValue}°c`;
-  temperatureDiv.appendChild(tempMax);
-
-  const tempMin = document.createElement("p");
-  tempMin.innerText = `Min Temp ${tempMinValue}°c`;
-  temperatureDiv.appendChild(tempMin);
-
-  const uvIndex = document.createElement("p");
-  uvIndex.innerText = `UV ${uvIndexValue}`;
-  uvIndex.classList.add(uvIndexColor(uvIndexValue));
-
-  const windSpeed = document.createElement("p");
-  windSpeed.innerText = `Wind speed ${windSpeedValue}`;
-
-  const windDir = document.createElement("p");
-  windDir.innerText = `Winde Direction ${windDirValue}`;
-
-  card.appendChild(cardHeader);
-  card.appendChild(description);
-  card.appendChild(temperatureDiv);
-  card.appendChild(uvIndex);
-  card.appendChild(windSpeed);
-  card.appendChild(windDir);
-
-  fiveDaysWeather.appendChild(card);
-} */
+}
 
 export { form, loadFiveCards, loadingScreen };
