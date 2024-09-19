@@ -1,6 +1,7 @@
 import "./dom-manipulation.css";
 import { fetchWeatherInfo } from "./weather-api";
 
+const form = document.querySelector("form");
 const currentSearch = document.querySelector(".current-search");
 
 const elements = {
@@ -190,4 +191,4 @@ function constructCard(
   fiveDaysWeather.appendChild(card);
 } */
 
-export { loadFiveCards };
+export { form, loadFiveCards };

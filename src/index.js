@@ -1,6 +1,13 @@
 import "./index.css";
 import "@fortawesome/fontawesome-free"
 
-import { loadFiveCards } from "./modules/dom.manipulation.js"
+import { form, loadFiveCards } from "./modules/dom.manipulation.js"
 
-loadFiveCards();
+form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const searchLocation = document.querySelector("#search-location").value;
+    await loadFiveCards(searchLocation);
+    form.reset();
+})
+
+// loadFiveCards();
