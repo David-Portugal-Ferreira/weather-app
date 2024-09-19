@@ -106,3 +106,7 @@ button[type=submit] {
     height: 50px;
     background-color: yellowgreen;
 }
+
+.by-hour:hover {
+    cursor: pointer;
+}

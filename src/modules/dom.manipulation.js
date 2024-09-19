@@ -1,11 +1,14 @@
 import "./dom-manipulation.css";
 import { fetchWeatherInfo } from "./weather-api";
 
-const contentDiv = document.querySelector(".content");
-const daysRowDiv = document.querySelector(".days-row");
+
 const form = document.querySelector("form");
 const formSearchButton = document.querySelector("button[type=submit]");
 const currentSearch = document.querySelector(".current-search");
+
+const contentDiv = document.querySelector(".content");
+const daysRowDiv = document.querySelector(".days-row");
+const byHour = document.querySelectorAll(".by-hour");
 
 const elements = {
   datetime: document.querySelectorAll(".datetime"),
@@ -78,6 +81,12 @@ async function loadFiveCards(city) {
     });
   });
 }
+
+byHour.forEach((element, index) => {
+  element.addEventListener("click", () => {
+    weatherByHour(index);
+  })
+})
 
 function windDirection(test, windDir) {
   if (windDir >= 337.6 || windDir <= 22.5) {
@@ -152,6 +161,10 @@ function loadingScreen(action) {
     contentDiv.removeChild(loadingDiv);
     // loadingDiv.classList = "loadingscreen-stop";
   }
+}
+
+function weatherByHour(index) {
+  alert(index);
 }
 
 /*
