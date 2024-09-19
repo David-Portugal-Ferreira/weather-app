@@ -10,10 +10,29 @@ body {
 
 .header {
     display: flex;
+    justify-content: space-between;
     height: 50px;
     background-color: aqua;
 }
-
+.header h2 {
+    margin-left: 10px;
+    font-size: 30px;
+    align-self: center;
+}
+.header form {
+    align-self: center;
+}
+form input[type=search] {
+    width: 250px;
+    border-radius: 15px;
+    border-style: none;
+}
+button[type=submit] {
+    margin-right: 20px;
+    border-style: none;
+    background: none;
+    cursor: pointer;
+}
 
 .content {
     display: flex;

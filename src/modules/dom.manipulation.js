@@ -1,7 +1,10 @@
 import "./dom-manipulation.css";
 import { fetchWeatherInfo } from "./weather-api";
 
+const contentDiv = document.querySelector(".content");
+const daysRowDiv = document.querySelector(".days-row");
 const form = document.querySelector("form");
+const formSearchButton = document.querySelector("button[type=submit]");
 const currentSearch = document.querySelector(".current-search");
 
 const elements = {
@@ -23,6 +26,7 @@ const elements = {
 };
 
 const icons = {
+  searchIcon: '<i class="fas fa-search"></i>',
   north: 'N <i class="fa-solid fa-arrow-up"></i>',
   northEast: 'NE <i class="fa-solid fa-arrow-right northeast"></i>',
   east: 'E <i class="fa-solid fa-arrow-right"></i>',
@@ -42,6 +46,8 @@ const weekDays = {
   5: "Friday",
   6: "Saturday",
 };
+
+formSearchButton.innerHTML = icons.searchIcon;
 
 async function loadFiveCards(city) {
   const weatherData = await fetchWeatherInfo(city);
@@ -122,10 +128,30 @@ function uvIndexColor(test, testIndex, uvIndexValue) {
   // const uvIndexDiv = document.querySelectorAll(".uvindex-div");
   // let currentUvDiv = uvIndexDiv[test];
   if (uvIndexValue <= 2) test.classList = "low-uv-index";
-  if (uvIndexValue >= 3 && uvIndexValue <= 5)  test.classList = "moderate-uv-index";
+  if (uvIndexValue >= 3 && uvIndexValue <= 5)
+    test.classList = "moderate-uv-index";
   if (uvIndexValue >= 6 && uvIndexValue <= 7) test.classList = "high-uv-index";
-  if (uvIndexValue >= 8 && uvIndexValue <= 10) test.classList = "veryhigh-uv-index";
+  if (uvIndexValue >= 8 && uvIndexValue <= 10)
+    test.classList = "veryhigh-uv-index";
   if (uvIndexValue >= 11) test.classList = "extreme-uv-index";
+}
+
+function loadingScreen(action) {
+  if (action === "start") {
+    const loadingDiv = document.createElement("div");
+    daysRowDiv.style.display = "none";
+    currentSearch.style.display = "none";
+    loadingDiv.classList = "loadingscreen";
+    loadingDiv.innerHTML = `Loading Data...`;
+    contentDiv.appendChild(loadingDiv);
+  }
+  if (action === "stop") {
+    const loadingDiv = document.querySelector(".loadingscreen");
+    daysRowDiv.style.display = "flex";
+    currentSearch.style.display = "flex";
+    contentDiv.removeChild(loadingDiv);
+    // loadingDiv.classList = "loadingscreen-stop";
+  }
 }
 
 /*
@@ -191,4 +217,4 @@ function constructCard(
   fiveDaysWeather.appendChild(card);
 } */
 
-export { form, loadFiveCards };
+export { form, loadFiveCards, loadingScreen };

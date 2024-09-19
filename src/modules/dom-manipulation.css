@@ -64,3 +64,8 @@
 .fa-solid.southwest {
   transform: rotate(135deg);
 }
+
+.loadingscreen {
+  font-size: 45px;
+  margin: 20px;
+}
