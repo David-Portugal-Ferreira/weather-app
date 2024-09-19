@@ -69,3 +69,33 @@
   font-size: 45px;
   margin: 20px;
 }
+
+.card-by-hours {
+  display: flex;
+  flex-direction: column;
+  width: 350px;
+  margin-bottom: 50px;
+}
+.card-by-hours p {
+  display: inline;
+}
+.card-header-by-hour {
+  display: flex;
+  justify-content: space-between;
+}
+.card-rain-by-hour {
+  display: flex;
+  justify-content: space-around;
+}
+.card-temp-by-hour {
+  display: flex;
+  justify-content: space-around;
+}
+.card-wind-by-hour {
+  display: flex;
+  justify-content: space-around;
+}
+.card-snow-by-hour {
+  display: flex;
+  justify-content: space-around;
+}
