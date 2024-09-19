@@ -1,7 +1,7 @@
 import "./dom-manipulation.css";
 import { fetchWeatherInfo } from "./weather-api";
 
-const currentSearch = document.querySelector(".current-search")
+const currentSearch = document.querySelector(".current-search");
 
 const elements = {
   datetime: document.querySelectorAll(".datetime"),
@@ -29,8 +29,8 @@ const icons = {
   south: 'S <i class="fa-solid fa-arrow-down"></i>',
   southWest: 'SW <i class="fa-solid fa-arrow-right southwest"></i>',
   west: 'W <i class="fa-solid fa-arrow-left"></i>',
-  northWest: 'NW <i class="fa-solid fa-arrow-right northwest"></i>'
-}
+  northWest: 'NW <i class="fa-solid fa-arrow-right northwest"></i>',
+};
 
 const weekDays = {
   0: "Sunday",
@@ -40,12 +40,12 @@ const weekDays = {
   4: "Thursday",
   5: "Friday",
   6: "Saturday",
-}
+};
 
 async function loadFiveCards(city) {
   const weatherData = await fetchWeatherInfo(city);
 
-  currentSearch.innerText = weatherData.resolvedAddress
+  currentSearch.innerText = weatherData.resolvedAddress;
 
   Object.keys(elements).forEach((element) => {
     // TODO - Change 'test' and 'testIndex' names
@@ -54,12 +54,17 @@ async function loadFiveCards(city) {
         convertDayToWeekDay(test, weatherData.days[testIndex][element]);
         return;
       }
-      if(element === 'winddir') {
+      if (element === "winddir") {
         windDirection(test, weatherData.days[testIndex][element]);
         return;
       }
       if (element === "snow" && weatherData.days[testIndex][element] <= 0) {
-        removeSnowDiv(testIndex, weatherData.days[testIndex][element]);
+        removeSnowDiv(testIndex);
+        return;
+      }
+      if (element === "uvindex") {
+        test.innerText = weatherData.days[testIndex][element];
+        uvIndexColor(test, testIndex, weatherData.days[testIndex][element]);
         return;
       }
       test.innerText = `${weatherData.days[testIndex][element]}`;
@@ -68,41 +73,41 @@ async function loadFiveCards(city) {
 }
 
 function windDirection(test, windDir) {
-  if(windDir >= -22.5 && windDir <= 22.5) {
+  if (windDir >= 337.6 || windDir <= 22.5) {
     test.innerHTML = icons.north;
-    return
+    return;
   }
-  if(windDir >= 22.6 && windDir <= 67.5) {
+  if (windDir >= 22.6 && windDir <= 67.5) {
     test.innerHTML = icons.northEast;
-    return
+    return;
   }
-  if(windDir >= 67.6 && windDir <= 112.5) {
+  if (windDir >= 67.6 && windDir <= 112.5) {
     test.innerHTML = icons.east;
-    return
+    return;
   }
-  if(windDir >= 112.6 && windDir <= 157.5) {
+  if (windDir >= 112.6 && windDir <= 157.5) {
     test.innerHTML = icons.southEast;
-    return
+    return;
   }
-  if(windDir >= 157.6 && windDir <= 202.5) {
+  if (windDir >= 157.6 && windDir <= 202.5) {
     test.innerHTML = icons.south;
-    return
+    return;
   }
-  if(windDir >= 202.6 && windDir <= 247.5) {
+  if (windDir >= 202.6 && windDir <= 247.5) {
     test.innerHTML = icons.southWest;
-    return
+    return;
   }
-  if(windDir >= 247.6 && windDir <= 292.5) {
+  if (windDir >= 247.6 && windDir <= 292.5) {
     test.innerHTML = icons.west;
-    return
+    return;
   }
-  if(windDir >= 292.6 && windDir <= 337.5) {
+  if (windDir >= 292.6 && windDir <= 337.5) {
     test.innerHTML = icons.northWest;
-    return
+    return;
   }
 }
 
-function removeSnowDiv(testIndex, weather) {
+function removeSnowDiv(testIndex) {
   const snowCards = document.querySelectorAll(".card-snow");
   snowCards[testIndex].replaceChildren();
 }
@@ -112,7 +117,18 @@ function convertDayToWeekDay(test, date) {
   test.innerText = weekDays[weekDay];
 }
 
-/* function constructCard(
+function uvIndexColor(test, testIndex, uvIndexValue) {
+  // const uvIndexDiv = document.querySelectorAll(".uvindex-div");
+  // let currentUvDiv = uvIndexDiv[test];
+  if (uvIndexValue <= 2) test.classList = "low-uv-index";
+  if (uvIndexValue >= 3 && uvIndexValue <= 5)  test.classList = "moderate-uv-index";
+  if (uvIndexValue >= 6 && uvIndexValue <= 7) test.classList = "high-uv-index";
+  if (uvIndexValue >= 8 && uvIndexValue <= 10) test.classList = "veryhigh-uv-index";
+  if (uvIndexValue >= 11) test.classList = "extreme-uv-index";
+}
+
+/*
+function constructCard(
   conditionsValue,
   datetimeValue,
   descriptionValue,
@@ -173,13 +189,5 @@ function convertDayToWeekDay(test, date) {
 
   fiveDaysWeather.appendChild(card);
 } */
-
-function uvIndexColor(uvIndexValue) {
-  if (uvIndexValue <= 2) return "low-uv-index";
-  if (uvIndexValue >= 3 && uvIndexValue <= 5) return "moderate-uv-index";
-  if (uvIndexValue >= 6 && uvIndexValue <= 7) return "high-uv-index";
-  if (uvIndexValue >= 8 && uvIndexValue <= 10) return "veryhigh-uv-index";
-  if (uvIndexValue >= 11) return "extreme-uv-index";
-}
 
 export { loadFiveCards };
