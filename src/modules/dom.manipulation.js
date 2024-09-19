@@ -5,7 +5,6 @@ const form = document.querySelector("form");
 const formSearchButton = document.querySelector("button[type=submit]");
 const currentSearch = document.querySelector(".current-search");
 
-const wrapper = document.querySelector(".wrapper");
 const contentDiv = document.querySelector(".content");
 const daysRowDiv = document.querySelector(".days-row");
 const byHour = document.querySelectorAll(".by-hour");
@@ -165,6 +164,7 @@ function loadingScreen(action) {
 
 function weatherByHour(index) {
   daysRowDiv.style.display = "none";
+  createControls();
   const hours = getHours(index);
   hours.map((hour) => {
 
@@ -253,7 +253,24 @@ function getHours(index) {
 }
 
 function createControls() {
+  const divControls = document.createElement("div");
+  divControls.classList = "controls";
 
+  const backButton = document.createElement("button");
+  backButton.innerText = "Return";
+  backButton.addEventListener("click", () => goBack());
+
+  divControls.appendChild(backButton)
+
+  contentDiv.insertBefore(divControls, contentDiv.firstChild);
+}
+
+function goBack() {
+  const controlsDiv = document.querySelector(".controls");
+  const cardsByHour = document.querySelectorAll(".card-by-hours");
+  cardsByHour.forEach((element) => contentDiv.removeChild(element));
+  contentDiv.removeChild(controlsDiv);
+  daysRowDiv.style.display = "flex";
 }
 
 export { form, loadFiveCards, loadingScreen };
