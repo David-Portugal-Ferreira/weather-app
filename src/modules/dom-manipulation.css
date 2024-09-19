@@ -76,9 +76,6 @@
   width: 350px;
   margin-bottom: 50px;
 }
-.card-by-hours p {
-  display: inline;
-}
 .card-header-by-hour {
   display: flex;
   justify-content: space-between;
@@ -90,6 +87,11 @@
 .card-temp-by-hour {
   display: flex;
   justify-content: space-around;
+}
+.card-temp-by-hour  div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .card-wind-by-hour {
   display: flex;

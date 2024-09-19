@@ -183,12 +183,16 @@ function weatherByHour(index) {
 
     const cardRain = document.createElement("div");
     cardRain.classList = "card-rain-by-hour";
+
     const precip = document.createElement("p");
     precip.innerText  = hour.precip;
+
     const precipProb = document.createElement("p");
     precipProb.innerText  = hour.precipprob;
+
     const humidity = document.createElement("p");
     humidity.innerText  = hour.humidity;
+    
     const pressure = document.createElement("p");
     pressure.innerText  = hour.pressure;
 
@@ -211,13 +215,24 @@ function weatherByHour(index) {
 
     const cardTemp = document.createElement("div");
     cardTemp.classList = "card-temp-by-hour";
+    
+    const divTemp = document.createElement("div");
+    const spanTemp = document.createElement("span");
+    spanTemp.innerText = "Temperature";
     const temp = document.createElement("p");
     temp.innerText  = hour.temp;
+    divTemp.appendChild(spanTemp);
+    divTemp.appendChild(temp);
+    cardTemp.appendChild(divTemp);
+
+    const uvindexDiv = document.createElement("div");
+    const uvindexSpan = document.createElement("div");
+    uvindexSpan.innerText = "UV Index";
     const uvindex = document.createElement("p");
     uvindex.innerText  = hour.uvindex;
-
-    cardTemp.appendChild(temp);
-    cardTemp.appendChild(uvindex);
+    uvindexDiv.appendChild(uvindexSpan);
+    uvindexDiv.appendChild(uvindex);
+    cardTemp.appendChild(uvindexDiv);
 
 
     const cardWind = document.createElement("div");
