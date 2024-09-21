@@ -73,31 +73,37 @@
 .card-by-hours {
   display: flex;
   flex-direction: column;
-  width: 350px;
+  width: 95%;
   margin-bottom: 50px;
 }
 .card-header-by-hour {
   display: flex;
-  justify-content: space-between;
-}
-.card-rain-by-hour {
-  display: flex;
   justify-content: space-around;
+  font-weight: 700;
 }
-.card-temp-by-hour {
+.card-body {
   display: flex;
-  justify-content: space-around;
+  flex: 1;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
 }
-.card-temp-by-hour  div {
+.card-temp-by-hour,
+.card-rain-by-hour,
+.card-wind-by-hour,
+.card-snow-by-hour {
+  display: flex;
+  gap: 10px;
+  margin: 5px;
+  padding: 7px;
+  border: 1px solid red;
+  border-radius: 10px;
+}
+
+.card-temp-by-hour  div,
+.card-rain-by-hour div,
+.card-wind-by-hour div,
+.card-snow-by-hour div {
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-.card-wind-by-hour {
-  display: flex;
-  justify-content: space-around;
-}
-.card-snow-by-hour {
-  display: flex;
-  justify-content: space-around;
 }
