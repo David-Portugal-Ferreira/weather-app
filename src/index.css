@@ -6,6 +6,7 @@ body {
 .wrapper {
     display: flex;
     flex-direction: column;
+    background-color: #D8EBF7;
 }
 
 .header {
@@ -74,6 +75,7 @@ button[type=submit] {
     width: 350px;
     border: 1px solid red;
     border-radius: 20px;
+    background-color: #F5F5F5;
 }
 
 .card-header,
