@@ -55,7 +55,8 @@ button[type=submit] {
 }
 .first-row,
 .second-row,
-.third-row {
+.third-row,
+.fourth-row {
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
@@ -66,7 +67,8 @@ button[type=submit] {
 .second-day,
 .third-day,
 .fourth-day,
-.fifth-day {
+.fifth-day,
+.sixth-day {
     display: flex;
     flex-direction: column;
     flex: 1 1 0;

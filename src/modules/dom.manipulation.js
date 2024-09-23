@@ -27,6 +27,19 @@ const elements = {
   snowdepth: document.querySelectorAll(".snowdepth"),
 };
 
+const currentDay = {
+  conditions: document.querySelectorAll(".current-conditions"),
+  temp: document.querySelectorAll(".current-temp"),
+  uvindex: document.querySelectorAll(".current-uvindex"),
+  precip: document.querySelectorAll(".current-precip"),
+  precipprob: document.querySelectorAll(".current-precipprob"),
+  humidity: document.querySelectorAll(".current-humidity"),
+  windspeed: document.querySelectorAll(".current-windspeed"),
+  winddir: document.querySelectorAll(".current-winddir"),
+  snow: document.querySelectorAll(".current-snow"),
+  snowdepth: document.querySelectorAll(".current-snowdepth"),
+};
+
 const icons = {
   searchIcon: '<i class="fas fa-search"></i>',
   north: 'N <i class="fa-solid fa-arrow-up"></i>',
@@ -51,9 +64,36 @@ const weekDays = {
 
 formSearchButton.innerHTML = icons.searchIcon;
 
-async function loadFiveCards(city) {
+async function loadCards(city) {
   const weatherData = await fetchWeatherInfo(city);
 
+  loadCurrentWeather(weatherData);
+  loadSixDays(weatherData);
+  
+}
+
+function loadCurrentWeather(weatherData) {
+  Object.keys(currentDay).forEach((element) => {
+    currentDay[element].forEach((test) => {
+      if (element === "winddir") {
+        windDirection(test, weatherData.currentConditions[element]);
+        return;
+      }
+      if (element === "snow" && weatherData.currentConditions[element] <= 0) {
+        //removeSnowDiv(testIndex);
+        return;
+      }
+      if (element === "uvindex") {
+        test.innerText = weatherData.currentConditions[element];
+        uvIndexColor(test, weatherData.currentConditions[element]);
+        return;
+      }
+      test.innerText = weatherData.currentConditions[element]
+    })
+  })
+}
+
+function loadSixDays(weatherData) {
   currentSearch.innerText = weatherData.resolvedAddress;
 
   Object.keys(elements).forEach((element) => {
@@ -335,4 +375,4 @@ function goBack() {
   daysRowDiv.style.display = "flex";
 }
 
-export { form, loadFiveCards, loadingScreen };
+export { form, loadCards, loadingScreen };
