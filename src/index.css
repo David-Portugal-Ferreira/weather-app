@@ -62,19 +62,33 @@ button[type=submit] {
     flex-wrap: wrap;
     gap: 25px;
 }
+.next-days {
+    display: flex; 
+    justify-content: center;
+    flex-wrap: wrap; 
+}
 
-.first-day,
+.first-day {
+    display: flex;
+    flex-direction: column;
+    margin: 25px;
+    padding: 5px;
+    width: 350px;
+    border: 1px solid red;
+    border-radius: 20px;
+    background-color: #F5F5F5;
+}
 .second-day,
 .third-day,
 .fourth-day,
 .fifth-day,
-.sixth-day {
+.sixth-day,
+.seventh-day {
     display: flex;
     flex-direction: column;
-    flex: 1 1 0;
     margin: 25px;
     padding: 5px;
-    width: 350px;
+    width: 250px;
     border: 1px solid red;
     border-radius: 20px;
     background-color: #F5F5F5;
