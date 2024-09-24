@@ -1,5 +1,6 @@
 import "./dom-manipulation.css";
 import { fetchWeatherInfo } from "./weather-api";
+import { weather } from "./images_manipulation";
 
 const form = document.querySelector("form");
 const formSearchButton = document.querySelector("button[type=submit]");
@@ -11,6 +12,7 @@ const byHour = document.querySelectorAll(".by-hour");
 
 const elements = {
   datetime: document.querySelectorAll(".datetime"),
+  icon: document.querySelectorAll(".icon"),
   conditions: document.querySelectorAll(".conditions"),
   description: document.querySelectorAll(".description"),
   tempmin: document.querySelectorAll(".tempmin"),
@@ -28,6 +30,7 @@ const elements = {
 };
 
 const currentDay = {
+  icon: document.querySelectorAll(".current-icon"),
   conditions: document.querySelectorAll(".current-conditions"),
   temp: document.querySelectorAll(".current-temp"),
   uvindex: document.querySelectorAll(".current-uvindex"),
@@ -75,6 +78,11 @@ async function loadCards(city) {
 function loadCurrentWeather(weatherData) {
   Object.keys(currentDay).forEach((element) => {
     currentDay[element].forEach((test) => {
+      if (element === "icon") {
+        let icon = weatherData.currentConditions[element]
+        test.src = weather[icon];
+        return;
+      }
       if (element === "winddir") {
         windDirection(test, weatherData.currentConditions[element]);
         return;
@@ -101,6 +109,11 @@ function loadSixDays(weatherData) {
     elements[element].forEach((test, testIndex) => {
       if (element === "datetime") {
         convertDayToWeekDay(test, weatherData.days[testIndex][element]);
+        return;
+      }
+      if (element === "icon") {
+        let icon = weatherData.days[testIndex][element]
+        test.src = weather[icon];
         return;
       }
       if (element === "winddir") {

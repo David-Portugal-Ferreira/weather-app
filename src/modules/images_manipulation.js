@@ -1,3 +1,27 @@
+import clearDayImage from "../images/weather/clear-day.png";
+import clearNightImage from "../images/weather/clear-night.png";
+import cloudyImage from "../images/weather/cloudy.png";
+import fogImage from "../images/weather/fog.png";
+import hailImage from "../images/weather/hail.png";
+import partlyCloudyDayImage from "../images/weather/partly-cloudy-day.png";
+import partlyCloudyNightImage from "../images/weather/partly-cloudy-night.png";
+import rainSnowShowersDayImage from "../images/weather/rain-snow-showers-day.png";
+import rainSnowShowersNightImage from "../images/weather/rain-snow-showers-night.png";
+import rainSnowImage from "../images/weather/rain-snow.png";
+import rainImage from "../images/weather/rain.png";
+import showersDayImage from "../images/weather/showers-day.png";
+import showersNightImage from "../images/weather/showers-night.png";
+import sleetImage from "../images/weather/sleet.png";
+import snowShowersDayImage from "../images/weather/snow-showers-day.png";
+import snowShowersNightImage from "../images/weather/snow-showers-night.png";
+import snowImage from "../images/weather/snow.png";
+import thunderRainImage from "../images/weather/thunder-rain.png";
+import thunderShowersDayImage from "../images/weather/thunder-showers-day.png";
+import thunderShowersNightImage from "../images/weather/thunder-showers-night.png";
+import thunderImage from "../images/weather/thunder.png";
+import windImage from "../images/weather/wind.png";
+
+
 const moonPhases = {
   waxingCrescent: `src/images/moon-phases/crescente_1_freepik.png`,
   firstQuarter: `src/images/moon-phases/crescente_2_freepik.png`,
@@ -10,28 +34,29 @@ const moonPhases = {
 };
 
 const weather = {
-  "clear-day": `src/images/weather/clear-day.svg`,
-  "clear-night": `src/images/weather/clear-night.svg`,
-  "cloudy": `src/images/weather/cloudy.svg`,
-  "fog": `src/images/weather/fog.svg`,
-  "hail": `src/images/weather/hail.svg`,
-  "partly-cloudy-day": `src/images/weather/partly-cloudy-day.svg`,
-  "partly-cloudy-night": `src/images/weather/partly-cloudy-night.svg`,
-  "rain-snow-showers-day": `src/images/weather/rain-snow-showers-day.svg`,
-  "rain-snow-showers-night": `src/images/weather/rain-snow-showers-night.svg`,
-  "rain-snow": `src/images/weather/rain-snow.svg`,
-  "rain": `src/images/weather/rain.svg`,
-  "showers-day": `src/images/weather/showers-day.svg`,
-  "showers-night": `src/images/weather/showers-night.svg`,
-  "sleet": `src/images/weather/sleet.svg`,
-  "snow-showers-day": `src/images/weather/snow-showers-day.svg`,
-  "snow-showers-night": `src/images/weather/snow-showers-night.svg`,
-  "snow": `src/images/weather/snow.svg`,
-  "thunder-rain": `src/images/weather/thunder-rain.svg`,
-  "thunder-showers-day": `src/images/weather/thunder-showers-day.svg`,
-  "thunder-showers-night": `src/images/weather/thunder-showers-night.svg`,
-  "thunder": `src/images/weather/thunder.svg`,
-  "wind": `src/images/weather/wind.svg`,
+  "clear-day": clearDayImage,
+  "clear-night": clearNightImage,
+  "cloudy": cloudyImage,
+  "fog": fogImage,
+  "hail": hailImage,
+  "partly-cloudy-day": partlyCloudyDayImage,
+  "partly-cloudy-night": partlyCloudyNightImage,
+  "rain-snow-showers-day": rainSnowShowersDayImage,
+  "rain-snow-showers-night": rainSnowShowersNightImage,
+  "rain-snow": rainSnowImage,
+  "rain": rainImage,
+  "showers-day": showersDayImage,
+  "showers-night": showersNightImage,
+  "sleet": sleetImage,
+  "snow-showers-day": snowShowersDayImage,
+  "snow-showers-night": snowShowersNightImage,
+  "snow": snowImage,
+  "thunder-rain": thunderRainImage,
+  "thunder-showers-day": thunderShowersDayImage,
+  "thunder-showers-night": thunderShowersNightImage,
+  "thunder": thunderImage,
+  "wind": windImage,
 };
+
 
 export { moonPhases, weather };
