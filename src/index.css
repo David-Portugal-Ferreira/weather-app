@@ -105,6 +105,9 @@ button[type=submit] {
     justify-content: center;
     gap: 25px;
 }
+.card-header {
+    height: 100px;
+}
 
 .card-header div,
 .card-description div,

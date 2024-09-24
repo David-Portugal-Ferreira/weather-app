@@ -21,16 +21,24 @@ import thunderShowersNightImage from "../images/weather/thunder-showers-night.pn
 import thunderImage from "../images/weather/thunder.png";
 import windImage from "../images/weather/wind.png";
 
+import waxingCrescent from "../images/moon-phases/crescente_1_freepik.png";
+import firstQuarter from "../images/moon-phases/crescente_2_freepik.png";
+import waxingGibbous from "../images/moon-phases/crescente_3_freepik.png";
+import full_moon from "../images/moon-phases/lua_cheia_freepik.png";
+import waningGibbous from "../images/moon-phases/minguante_1_freepik.png";
+import lastQuarter from "../images/moon-phases/minguante_2_freepik.png";
+import waningCrescent from "../images/moon-phases/minguante_3_freepik.png";
+import new_moon from "../images/moon-phases/lua_nova_freepik.png";
 
 const moonPhases = {
-  waxingCrescent: `src/images/moon-phases/crescente_1_freepik.png`,
-  firstQuarter: `src/images/moon-phases/crescente_2_freepik.png`,
-  waxingGibbous: `src/images/moon-phases/crescente_3_freepik.png`,
-  full_moon: `src/images/moon-phases/lua_cheia_freepik.png`,
-  waningGibbous: `src/images/moon-phases/minguante_1_freepik.png`,
-  lastQuarter: `src/images/moon-phases/minguante_2_freepik.png`,
-  waningCrescent: `src/images/moon-phases/minguante_3_freepik.png`,
-  new_moon: `src/images/moon-phases/lua_nova_freepik.png`,
+  waxingCrescent,
+  firstQuarter,
+  waxingGibbous,
+  full_moon,
+  waningGibbous,
+  lastQuarter,
+  waningCrescent,
+  new_moon
 };
 
 const weather = {

@@ -31,6 +31,7 @@ const elements = {
 const currentDay = {
   icon: document.querySelectorAll(".current-icon"),
   temp: document.querySelectorAll(".current-temp"),
+  warm: document.querySelectorAll(".current-warm"),
   uvindex: document.querySelectorAll(".current-uvindex"),
   precip: document.querySelectorAll(".current-precip"),
   precipprob: document.querySelectorAll(".current-precipprob"),
@@ -76,9 +77,29 @@ async function loadCards(city) {
 function loadCurrentWeather(weatherData) {
   Object.keys(currentDay).forEach((element) => {
     currentDay[element].forEach((test) => {
+      if (element === "temp") {
+        test.innerText = `${weatherData.currentConditions[element]}ºC`;
+        return;
+      }
       if (element === "icon") {
         let icon = weatherData.currentConditions[element]
         test.src = weather[icon];
+        return;
+      }
+      if (element === "humidity") {
+        test.innerText = `${weatherData.currentConditions[element]}%`;
+        return;
+      }
+      if (element === "precipprob") {
+        test.innerText = `${weatherData.currentConditions[element]}%`;
+        return;
+      }
+      if (element === "precip") {
+        test.innerText = `${weatherData.currentConditions[element]}%`;
+        return;
+      }
+      if (element === "windspeed") {
+        test.innerText = `${weatherData.currentConditions[element]} km/h`;
         return;
       }
       if (element === "winddir") {
@@ -132,11 +153,7 @@ function loadSixDays(weatherData) {
   });
 }
 
-byHour.forEach((element, index) => {
-  element.addEventListener("click", () => {
-    weatherByHour(index);
-  });
-});
+
 
 function windDirection(test, windDir) {
   if (windDir >= 337.6 || windDir <= 22.5) {
@@ -184,8 +201,6 @@ function convertDayToWeekDay(test, date) {
 }
 
 function uvIndexColor(test, uvIndexValue) {
-  // const uvIndexDiv = document.querySelectorAll(".uvindex-div");
-  // let currentUvDiv = uvIndexDiv[test];
   if (uvIndexValue <= 2) test.classList = "low-uv-index";
   if (uvIndexValue >= 3 && uvIndexValue <= 5)
     test.classList = "moderate-uv-index";
@@ -213,6 +228,12 @@ function loadingScreen(action) {
   }
 }
 
+byHour.forEach((element, index) => {
+  element.addEventListener("click", () => {
+    // weatherByHour(index);
+    moreWeatherInfo(index);
+  });
+});
 function weatherByHour(index) {
   daysRowDiv.style.display = "none";
   createControls();
@@ -226,8 +247,8 @@ function weatherByHour(index) {
     cardHeader.classList = "card-header-by-hour";
     const datetime = document.createElement("p");
     datetime.innerText = hour.datetime;
-    const conditions = document.createElement("p");
-    conditions.innerText = hour.conditions;
+    const conditions = document.createElement("img");
+    conditions.src = weather[hour.icon];
     cardHeader.appendChild(datetime);
     cardHeader.appendChild(conditions);
 
@@ -351,6 +372,10 @@ function weatherByHour(index) {
   
     contentDiv.appendChild(card);
   });
+}
+
+function moreWeatherInfo(index) {
+  alert(index)
 }
 
 function getHours(index) {
