@@ -31,7 +31,8 @@ const elements = {
 const currentDay = {
   icon: document.querySelectorAll(".current-icon"),
   temp: document.querySelectorAll(".current-temp"),
-  warm: document.querySelectorAll(".current-warm"),
+  tempmin: document.querySelectorAll(".current-tempmin"),
+  tempmax: document.querySelectorAll(".current-tempmax"),
   uvindex: document.querySelectorAll(".current-uvindex"),
   precip: document.querySelectorAll(".current-precip"),
   precipprob: document.querySelectorAll(".current-precipprob"),
@@ -76,7 +77,11 @@ async function loadCards(city) {
 function loadCurrentWeather(weatherData) {
   Object.keys(currentDay).forEach((element) => {
     currentDay[element].forEach((test) => {
-      elementContent(element, test, weatherData.currentConditions[element]);
+      if (element === "temp" || element === "icon") {
+        elementContent(element, test, weatherData.currentConditions[element]);
+        return;
+      }
+      elementContent(element, test, weatherData.days[0][element])
     })
   })
 }
@@ -94,6 +99,12 @@ function loadSixDays(weatherData) {
 
 function elementContent(weatherElement, htmlElement, weatherData) {
   if (weatherElement === "temp") {
+    htmlElement.innerText = `${weatherData}ºC`;
+    return;
+  }if (weatherElement === "tempmin") {
+    htmlElement.innerText = `${weatherData}ºC`;
+    return;
+  }if (weatherElement === "tempmax") {
     htmlElement.innerText = `${weatherData}ºC`;
     return;
   }

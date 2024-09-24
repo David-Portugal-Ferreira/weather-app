@@ -52,7 +52,7 @@ async function fetchWeatherInfo(city = "tomar") {
 
 function compareDate(datetime) {
   const date = parseInt(new Date().valueOf() / 1000);
-  if (datetime > date ) {
+  if (datetime < date ) {
     return true
   } else {
     return false;
