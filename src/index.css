@@ -1,3 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Arvo:ital,wght@0,400;0,700;1,400;1,700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+
 body {
     margin: 0;
     padding: 0;
@@ -44,10 +48,11 @@ button[type=submit] {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 30px;
-    width: 350px;
-    font-size: 25px;
+    height: fit-content;
+    width: 90%;
+    font-size: 30px;
     margin-top: 20px;
+    font-family: "Playfair Display", serif;
 }
 .days-row {
     display: flex;
@@ -130,4 +135,16 @@ button[type=submit] {
 
 .by-hour:hover {
     cursor: pointer;
+}
+
+.current-temp {
+    font-family: "Anton", serif;
+}
+.card-rain,
+.card-wind,
+.card-snow,
+.card-temp,
+.card-header,
+.card-more {
+    font-family: "Arvo", serif;
 }
