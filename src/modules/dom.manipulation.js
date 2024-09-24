@@ -226,162 +226,162 @@ byHour.forEach((element, index) => {
     moreWeatherInfo(index);
   });
 });
-function weatherByHour(index) {
-  daysRowDiv.style.display = "none";
-  createControls();
-  const hours = getHours(index);
-  hours.map((hour) => {
+// function weatherByHour(index) {
+//   daysRowDiv.style.display = "none";
+//   createControls();
+//   const hours = getHours(index);
+//   hours.map((hour) => {
 
-    const card = document.createElement("div");
-    card.classList = "card-by-hours";
+//     const card = document.createElement("div");
+//     card.classList = "card-by-hours";
 
-    const cardHeader = document.createElement("div");
-    cardHeader.classList = "card-header-by-hour";
-    const datetime = document.createElement("p");
-    datetime.innerText = hour.datetime;
-    const conditions = document.createElement("img");
-    conditions.src = weather[hour.icon];
-    cardHeader.appendChild(datetime);
-    cardHeader.appendChild(conditions);
+//     const cardHeader = document.createElement("div");
+//     cardHeader.classList = "card-header-by-hour";
+//     const datetime = document.createElement("p");
+//     datetime.innerText = hour.datetime;
+//     const conditions = document.createElement("img");
+//     conditions.src = weather[hour.icon];
+//     cardHeader.appendChild(datetime);
+//     cardHeader.appendChild(conditions);
 
-    const cardBody = document.createElement("div");
-    cardBody.classList = "card-body";
+//     const cardBody = document.createElement("div");
+//     cardBody.classList = "card-body";
 
-    const cardTemp = document.createElement("div");
-    cardTemp.classList = "card-temp-by-hour";
+//     const cardTemp = document.createElement("div");
+//     cardTemp.classList = "card-temp-by-hour";
 
-    const divTemp = document.createElement("div");
-    const spanTemp = document.createElement("span");
-    spanTemp.innerText = "Temperature";
-    const temp = document.createElement("p");
-    temp.innerText = hour.temp;
-    divTemp.appendChild(spanTemp);
-    divTemp.appendChild(temp);
-    cardTemp.appendChild(divTemp);
+//     const divTemp = document.createElement("div");
+//     const spanTemp = document.createElement("span");
+//     spanTemp.innerText = "Temperature";
+//     const temp = document.createElement("p");
+//     temp.innerText = hour.temp;
+//     divTemp.appendChild(spanTemp);
+//     divTemp.appendChild(temp);
+//     cardTemp.appendChild(divTemp);
 
-    const uvindexDiv = document.createElement("div");
-    const uvindexSpan = document.createElement("div");
-    uvindexSpan.innerText = "UV Index";
-    const uvindex = document.createElement("p");
-    uvIndexColor(uvindex, hour.uvindex);
-    uvindex.innerText = hour.uvindex;
-    uvindexDiv.appendChild(uvindexSpan);
-    uvindexDiv.appendChild(uvindex);
-    cardTemp.appendChild(uvindexDiv);
+//     const uvindexDiv = document.createElement("div");
+//     const uvindexSpan = document.createElement("div");
+//     uvindexSpan.innerText = "UV Index";
+//     const uvindex = document.createElement("p");
+//     uvIndexColor(uvindex, hour.uvindex);
+//     uvindex.innerText = hour.uvindex;
+//     uvindexDiv.appendChild(uvindexSpan);
+//     uvindexDiv.appendChild(uvindex);
+//     cardTemp.appendChild(uvindexDiv);
 
 
-    const cardRain = document.createElement("div");
-    cardRain.classList = "card-rain-by-hour";
+//     const cardRain = document.createElement("div");
+//     cardRain.classList = "card-rain-by-hour";
 
-    const precipDiv = document.createElement("div");
-    const precipSpan = document.createElement("span");
-    precipSpan.innerText = "Precip";
-    const precip = document.createElement("p");
-    precip.innerText  = `${hour.precip}%`;
-    precipDiv.appendChild(precipSpan);
-    precipDiv.appendChild(precip)
+//     const precipDiv = document.createElement("div");
+//     const precipSpan = document.createElement("span");
+//     precipSpan.innerText = "Precip";
+//     const precip = document.createElement("p");
+//     precip.innerText  = `${hour.precip}%`;
+//     precipDiv.appendChild(precipSpan);
+//     precipDiv.appendChild(precip)
 
-    const precipProbDiv = document.createElement("div");
-    const precipProbSpan = document.createElement("span");
-    precipProbSpan.innerText = "Probability"
-    const precipProb = document.createElement("p");
-    precipProb.innerText  = `${hour.precipprob}%`;
-    precipProbDiv.appendChild(precipProbSpan);
-    precipProbDiv.appendChild(precipProb)
+//     const precipProbDiv = document.createElement("div");
+//     const precipProbSpan = document.createElement("span");
+//     precipProbSpan.innerText = "Probability"
+//     const precipProb = document.createElement("p");
+//     precipProb.innerText  = `${hour.precipprob}%`;
+//     precipProbDiv.appendChild(precipProbSpan);
+//     precipProbDiv.appendChild(precipProb)
 
-    const humidityDiv = document.createElement("div");
-    const humiditySpan = document.createElement("span");
-    humiditySpan.innerText = "Humiduty"
-    const humidity = document.createElement("p");
-    humidity.innerText  = `${hour.humidity}%`;
-    humidityDiv.appendChild(humiditySpan);
-    humidityDiv.appendChild(humidity);
+//     const humidityDiv = document.createElement("div");
+//     const humiditySpan = document.createElement("span");
+//     humiditySpan.innerText = "Humiduty"
+//     const humidity = document.createElement("p");
+//     humidity.innerText  = `${hour.humidity}%`;
+//     humidityDiv.appendChild(humiditySpan);
+//     humidityDiv.appendChild(humidity);
     
-    const pressureDiv = document.createElement("div");
-    const pressureSpan = document.createElement("span");
-    pressureSpan.innerText = "Pressure";
-    const pressure = document.createElement("p");
-    pressure.innerText  = hour.pressure;
-    pressureDiv.appendChild(pressureSpan);
-    pressureDiv.appendChild(pressure);
+//     const pressureDiv = document.createElement("div");
+//     const pressureSpan = document.createElement("span");
+//     pressureSpan.innerText = "Pressure";
+//     const pressure = document.createElement("p");
+//     pressure.innerText  = hour.pressure;
+//     pressureDiv.appendChild(pressureSpan);
+//     pressureDiv.appendChild(pressure);
 
-    cardRain.appendChild(precipDiv);
-    cardRain.appendChild(precipProbDiv);
-    cardRain.appendChild(humidityDiv);
-    cardRain.appendChild(pressureDiv);
+//     cardRain.appendChild(precipDiv);
+//     cardRain.appendChild(precipProbDiv);
+//     cardRain.appendChild(humidityDiv);
+//     cardRain.appendChild(pressureDiv);
 
 
-    const cardSnow = document.createElement("div");
-    cardSnow.classList = "card-snow-by-hour";
+//     const cardSnow = document.createElement("div");
+//     cardSnow.classList = "card-snow-by-hour";
 
-    const snowDiv = document.createElement("div");
-    const snowSpan = document.createElement("span");
-    snowSpan.innerText = "Snow"
-    const snow = document.createElement("p");
-    snow.innerText  = hour.snow;
-    snowDiv.appendChild(snowSpan);
-    snowDiv.appendChild(snow);
+//     const snowDiv = document.createElement("div");
+//     const snowSpan = document.createElement("span");
+//     snowSpan.innerText = "Snow"
+//     const snow = document.createElement("p");
+//     snow.innerText  = hour.snow;
+//     snowDiv.appendChild(snowSpan);
+//     snowDiv.appendChild(snow);
 
-    const snowDepthDiv = document.createElement("div");
-    const snowDepthSpan = document.createElement("span");
-    snowDepthSpan.innerText = "Depth"
-    const snowDepth = document.createElement("p");
-    snowDepth.innerText  = hour.snowdepth;
-    snowDepthDiv.appendChild(snowDepthSpan);
-    snowDepthDiv.appendChild(snowDepth);
+//     const snowDepthDiv = document.createElement("div");
+//     const snowDepthSpan = document.createElement("span");
+//     snowDepthSpan.innerText = "Depth"
+//     const snowDepth = document.createElement("p");
+//     snowDepth.innerText  = hour.snowdepth;
+//     snowDepthDiv.appendChild(snowDepthSpan);
+//     snowDepthDiv.appendChild(snowDepth);
 
-    cardSnow.appendChild(snowDiv);
-    cardSnow.appendChild(snowDepthDiv);
+//     cardSnow.appendChild(snowDiv);
+//     cardSnow.appendChild(snowDepthDiv);
 
-    const cardWind = document.createElement("div");
-    cardWind.classList = "card-wind-by-hour";
+//     const cardWind = document.createElement("div");
+//     cardWind.classList = "card-wind-by-hour";
 
-    const windDirDiv = document.createElement("div");
-    const windDirSpan = document.createElement("span");
-    windDirSpan.innerText = "Wind Dir"
-    const windDir = document.createElement("p");
-    windDir.innerText  = hour.winddir;
-    windDirDiv.appendChild(windDirSpan);
-    windDirDiv.appendChild(windDir);
+//     const windDirDiv = document.createElement("div");
+//     const windDirSpan = document.createElement("span");
+//     windDirSpan.innerText = "Wind Dir"
+//     const windDir = document.createElement("p");
+//     windDir.innerText  = hour.winddir;
+//     windDirDiv.appendChild(windDirSpan);
+//     windDirDiv.appendChild(windDir);
 
-    const windSpeedDiv = document.createElement("div");
-    const windSpeedSpan = document.createElement("span");
-    windSpeedSpan.innerText = "Speed";
-    const windSpeed = document.createElement("p");
-    windSpeed.innerText  = `${hour.windspeed} KM/H`;
-    windSpeedDiv.appendChild(windSpeedSpan);
-    windSpeedDiv.appendChild(windSpeed);
+//     const windSpeedDiv = document.createElement("div");
+//     const windSpeedSpan = document.createElement("span");
+//     windSpeedSpan.innerText = "Speed";
+//     const windSpeed = document.createElement("p");
+//     windSpeed.innerText  = `${hour.windspeed} KM/H`;
+//     windSpeedDiv.appendChild(windSpeedSpan);
+//     windSpeedDiv.appendChild(windSpeed);
 
-    cardWind.appendChild(windDirDiv);
-    cardWind.appendChild(windSpeedDiv);
+//     cardWind.appendChild(windDirDiv);
+//     cardWind.appendChild(windSpeedDiv);
 
-    card.appendChild(cardHeader);
-    cardBody.appendChild(cardTemp);
-    cardBody.appendChild(cardRain);
-    cardBody.appendChild(cardSnow);
-    cardBody.appendChild(cardWind);
-    card.appendChild(cardBody);
+//     card.appendChild(cardHeader);
+//     cardBody.appendChild(cardTemp);
+//     cardBody.appendChild(cardRain);
+//     cardBody.appendChild(cardSnow);
+//     cardBody.appendChild(cardWind);
+//     card.appendChild(cardBody);
   
-    contentDiv.appendChild(card);
-  });
-}
+//     contentDiv.appendChild(card);
+//   });
+// }
 
 function moreWeatherInfo() {
   daysRowDiv.style.display = "none";
   createControls();
 }
 
-function getHours(index) {
-  const data = JSON.parse(localStorage.getItem("weather"));
-  const hours = [];
-  const timeNow = parseInt(new Date().valueOf() / 1000);
-  data.days[index].hours.forEach((hour) => {
-    if (hour.datetimeEpoch >= timeNow) {
-      hours.push(hour);
-    }
-  });
-  return hours;
-}
+// function getHours(index) {
+//   const data = JSON.parse(localStorage.getItem("weather"));
+//   const hours = [];
+//   const timeNow = parseInt(new Date().valueOf() / 1000);
+//   data.days[index].hours.forEach((hour) => {
+//     if (hour.datetimeEpoch >= timeNow) {
+//       hours.push(hour);
+//     }
+//   });
+//   return hours;
+// }
 
 function createControls() {
   const divControls = document.createElement("div");

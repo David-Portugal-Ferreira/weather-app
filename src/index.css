@@ -109,6 +109,7 @@ button[type=submit] {
     display: flex;
     justify-content: center;
     gap: 25px;
+    font-family: "Arvo", serif;
 }
 .card-header {
     height: 100px;
@@ -146,5 +147,5 @@ button[type=submit] {
 .card-temp,
 .card-header,
 .card-more {
-    font-family: "Arvo", serif;
+    
 }
