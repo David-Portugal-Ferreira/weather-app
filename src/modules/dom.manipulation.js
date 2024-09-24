@@ -71,51 +71,12 @@ async function loadCards(city) {
 
   loadCurrentWeather(weatherData);
   loadSixDays(weatherData);
-  
 }
 
 function loadCurrentWeather(weatherData) {
   Object.keys(currentDay).forEach((element) => {
     currentDay[element].forEach((test) => {
-      if (element === "temp") {
-        test.innerText = `${weatherData.currentConditions[element]}ºC`;
-        return;
-      }
-      if (element === "icon") {
-        let icon = weatherData.currentConditions[element]
-        test.src = weather[icon];
-        return;
-      }
-      if (element === "humidity") {
-        test.innerText = `${weatherData.currentConditions[element]}%`;
-        return;
-      }
-      if (element === "precipprob") {
-        test.innerText = `${weatherData.currentConditions[element]}%`;
-        return;
-      }
-      if (element === "precip") {
-        test.innerText = `${weatherData.currentConditions[element]}%`;
-        return;
-      }
-      if (element === "windspeed") {
-        test.innerText = `${weatherData.currentConditions[element]} km/h`;
-        return;
-      }
-      if (element === "winddir") {
-        windDirection(test, weatherData.currentConditions[element]);
-        return;
-      }
-      if (element === "snow" && weatherData.currentConditions[element] <= 0) {
-        //removeSnowDiv(testIndex);
-        return;
-      }
-      if (element === "uvindex") {
-        test.innerText = weatherData.currentConditions[element];
-        uvIndexColor(test, weatherData.currentConditions[element]);
-        return;
-      }
-      test.innerText = weatherData.currentConditions[element]
+      elementContent(element, test, weatherData.currentConditions[element]);
     })
   })
 }
@@ -125,35 +86,56 @@ function loadSixDays(weatherData) {
 
   Object.keys(elements).forEach((element) => {
     // TODO - Change 'test' and 'testIndex' names
-    elements[element].forEach((test, testIndex) => {
-      if (element === "datetime") {
-        convertDayToWeekDay(test, weatherData.days[testIndex][element]);
-        return;
-      }
-      if (element === "icon") {
-        let icon = weatherData.days[testIndex][element]
-        test.src = weather[icon];
-        return;
-      }
-      if (element === "winddir") {
-        windDirection(test, weatherData.days[testIndex][element]);
-        return;
-      }
-      if (element === "snow" && weatherData.days[testIndex][element] <= 0) {
-        removeSnowDiv(testIndex);
-        return;
-      }
-      if (element === "uvindex") {
-        test.innerText = weatherData.days[testIndex][element];
-        uvIndexColor(test, weatherData.days[testIndex][element]);
-        return;
-      }
-      test.innerText = `${weatherData.days[testIndex][element]}`;
+    elements[element].forEach((test, index) => {
+      elementContent(element, test, weatherData.days[index][element], index);
     });
   });
 }
 
-
+function elementContent(weatherElement, htmlElement, weatherData) {
+  if (weatherElement === "temp") {
+    htmlElement.innerText = `${weatherData}ºC`;
+    return;
+  }
+  if (weatherElement === "icon") {
+    let icon = weatherData;
+    htmlElement.src = weather[icon];
+    return;
+  }
+  if (weatherElement === "humidity") {
+    htmlElement.innerText = `${weatherData}%`;
+    return;
+  }
+  if (weatherElement === "precipprob") {
+    htmlElement.innerText = `${weatherData}%`;
+    return;
+  }
+  if (weatherElement === "precip") {
+    htmlElement.innerText = `${weatherData}%`;
+    return;
+  }
+  if (weatherElement === "windspeed") {
+    htmlElement.innerText = `${weatherData} km/h`;
+    return;
+  }
+  if (weatherElement === "winddir") {
+    windDirection(htmlElement, weatherData);
+    return;
+  }
+  if (weatherElement === "snow" && weatherData <= 0) {
+    removeSnowDiv(htmlElement);
+    return;
+  }
+  if (weatherElement === "uvindex") {
+    htmlElement.innerText = weatherData;
+    uvIndexColor(htmlElement, weatherData);
+    return;
+  }
+  if (weatherElement === "datetime") {
+    convertDayToWeekDay(htmlElement, weatherData);
+    return;
+  }
+}
 
 function windDirection(test, windDir) {
   if (windDir >= 337.6 || windDir <= 22.5) {
@@ -191,8 +173,7 @@ function windDirection(test, windDir) {
 }
 
 function removeSnowDiv(testIndex) {
-  const snowCards = document.querySelectorAll(".card-snow");
-  snowCards[testIndex].replaceChildren();
+  testIndex.parentElement.parentElement.style.display = "none";
 }
 
 function convertDayToWeekDay(test, date) {
@@ -374,8 +355,9 @@ function weatherByHour(index) {
   });
 }
 
-function moreWeatherInfo(index) {
-  alert(index)
+function moreWeatherInfo() {
+  daysRowDiv.style.display = "none";
+  createControls();
 }
 
 function getHours(index) {
@@ -400,7 +382,7 @@ function createControls() {
 
   divControls.appendChild(backButton)
 
-  contentDiv.insertBefore(divControls, contentDiv.firstChild);
+  contentDiv.appendChild(divControls);
 }
 
 function goBack() {
