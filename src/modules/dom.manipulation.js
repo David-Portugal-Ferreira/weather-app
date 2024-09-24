@@ -13,7 +13,6 @@ const byHour = document.querySelectorAll(".by-hour");
 const elements = {
   datetime: document.querySelectorAll(".datetime"),
   icon: document.querySelectorAll(".icon"),
-  conditions: document.querySelectorAll(".conditions"),
   description: document.querySelectorAll(".description"),
   tempmin: document.querySelectorAll(".tempmin"),
   temp: document.querySelectorAll(".temp"),
@@ -31,7 +30,6 @@ const elements = {
 
 const currentDay = {
   icon: document.querySelectorAll(".current-icon"),
-  conditions: document.querySelectorAll(".current-conditions"),
   temp: document.querySelectorAll(".current-temp"),
   uvindex: document.querySelectorAll(".current-uvindex"),
   precip: document.querySelectorAll(".current-precip"),
