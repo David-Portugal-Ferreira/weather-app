@@ -1,5 +1,6 @@
 import "./dom-manipulation.css";
 import { fetchWeatherInfo } from "./weather-api";
+import { weather } from "./images_manipulation";
 
 const form = document.querySelector("form");
 const formSearchButton = document.querySelector("button[type=submit]");
@@ -11,7 +12,7 @@ const byHour = document.querySelectorAll(".by-hour");
 
 const elements = {
   datetime: document.querySelectorAll(".datetime"),
-  conditions: document.querySelectorAll(".conditions"),
+  icon: document.querySelectorAll(".icon"),
   description: document.querySelectorAll(".description"),
   tempmin: document.querySelectorAll(".tempmin"),
   temp: document.querySelectorAll(".temp"),
@@ -25,6 +26,20 @@ const elements = {
   windspeedmax: document.querySelectorAll(".windspeedmax"),
   snow: document.querySelectorAll(".snow"),
   snowdepth: document.querySelectorAll(".snowdepth"),
+};
+
+const currentDay = {
+  icon: document.querySelectorAll(".current-icon"),
+  temp: document.querySelectorAll(".current-temp"),
+  warm: document.querySelectorAll(".current-warm"),
+  uvindex: document.querySelectorAll(".current-uvindex"),
+  precip: document.querySelectorAll(".current-precip"),
+  precipprob: document.querySelectorAll(".current-precipprob"),
+  humidity: document.querySelectorAll(".current-humidity"),
+  windspeed: document.querySelectorAll(".current-windspeed"),
+  winddir: document.querySelectorAll(".current-winddir"),
+  snow: document.querySelectorAll(".current-snow"),
+  snowdepth: document.querySelectorAll(".current-snowdepth"),
 };
 
 const icons = {
@@ -51,41 +66,76 @@ const weekDays = {
 
 formSearchButton.innerHTML = icons.searchIcon;
 
-async function loadFiveCards(city) {
+async function loadCards(city) {
   const weatherData = await fetchWeatherInfo(city);
 
+  loadCurrentWeather(weatherData);
+  loadSixDays(weatherData);
+}
+
+function loadCurrentWeather(weatherData) {
+  Object.keys(currentDay).forEach((element) => {
+    currentDay[element].forEach((test) => {
+      elementContent(element, test, weatherData.currentConditions[element]);
+    })
+  })
+}
+
+function loadSixDays(weatherData) {
   currentSearch.innerText = weatherData.resolvedAddress;
 
   Object.keys(elements).forEach((element) => {
     // TODO - Change 'test' and 'testIndex' names
-    elements[element].forEach((test, testIndex) => {
-      if (element === "datetime") {
-        convertDayToWeekDay(test, weatherData.days[testIndex][element]);
-        return;
-      }
-      if (element === "winddir") {
-        windDirection(test, weatherData.days[testIndex][element]);
-        return;
-      }
-      if (element === "snow" && weatherData.days[testIndex][element] <= 0) {
-        removeSnowDiv(testIndex);
-        return;
-      }
-      if (element === "uvindex") {
-        test.innerText = weatherData.days[testIndex][element];
-        uvIndexColor(test, weatherData.days[testIndex][element]);
-        return;
-      }
-      test.innerText = `${weatherData.days[testIndex][element]}`;
+    elements[element].forEach((test, index) => {
+      elementContent(element, test, weatherData.days[index][element], index);
     });
   });
 }
 
-byHour.forEach((element, index) => {
-  element.addEventListener("click", () => {
-    weatherByHour(index);
-  });
-});
+function elementContent(weatherElement, htmlElement, weatherData) {
+  if (weatherElement === "temp") {
+    htmlElement.innerText = `${weatherData}ºC`;
+    return;
+  }
+  if (weatherElement === "icon") {
+    let icon = weatherData;
+    htmlElement.src = weather[icon];
+    return;
+  }
+  if (weatherElement === "humidity") {
+    htmlElement.innerText = `${weatherData}%`;
+    return;
+  }
+  if (weatherElement === "precipprob") {
+    htmlElement.innerText = `${weatherData}%`;
+    return;
+  }
+  if (weatherElement === "precip") {
+    htmlElement.innerText = `${weatherData}%`;
+    return;
+  }
+  if (weatherElement === "windspeed") {
+    htmlElement.innerText = `${weatherData} km/h`;
+    return;
+  }
+  if (weatherElement === "winddir") {
+    windDirection(htmlElement, weatherData);
+    return;
+  }
+  if (weatherElement === "snow" && weatherData <= 0) {
+    removeSnowDiv(htmlElement);
+    return;
+  }
+  if (weatherElement === "uvindex") {
+    htmlElement.innerText = weatherData;
+    uvIndexColor(htmlElement, weatherData);
+    return;
+  }
+  if (weatherElement === "datetime") {
+    convertDayToWeekDay(htmlElement, weatherData);
+    return;
+  }
+}
 
 function windDirection(test, windDir) {
   if (windDir >= 337.6 || windDir <= 22.5) {
@@ -123,8 +173,7 @@ function windDirection(test, windDir) {
 }
 
 function removeSnowDiv(testIndex) {
-  const snowCards = document.querySelectorAll(".card-snow");
-  snowCards[testIndex].replaceChildren();
+  testIndex.parentElement.parentElement.style.display = "none";
 }
 
 function convertDayToWeekDay(test, date) {
@@ -133,8 +182,6 @@ function convertDayToWeekDay(test, date) {
 }
 
 function uvIndexColor(test, uvIndexValue) {
-  // const uvIndexDiv = document.querySelectorAll(".uvindex-div");
-  // let currentUvDiv = uvIndexDiv[test];
   if (uvIndexValue <= 2) test.classList = "low-uv-index";
   if (uvIndexValue >= 3 && uvIndexValue <= 5)
     test.classList = "moderate-uv-index";
@@ -162,6 +209,12 @@ function loadingScreen(action) {
   }
 }
 
+byHour.forEach((element, index) => {
+  element.addEventListener("click", () => {
+    // weatherByHour(index);
+    moreWeatherInfo(index);
+  });
+});
 function weatherByHour(index) {
   daysRowDiv.style.display = "none";
   createControls();
@@ -175,8 +228,8 @@ function weatherByHour(index) {
     cardHeader.classList = "card-header-by-hour";
     const datetime = document.createElement("p");
     datetime.innerText = hour.datetime;
-    const conditions = document.createElement("p");
-    conditions.innerText = hour.conditions;
+    const conditions = document.createElement("img");
+    conditions.src = weather[hour.icon];
     cardHeader.appendChild(datetime);
     cardHeader.appendChild(conditions);
 
@@ -302,6 +355,11 @@ function weatherByHour(index) {
   });
 }
 
+function moreWeatherInfo() {
+  daysRowDiv.style.display = "none";
+  createControls();
+}
+
 function getHours(index) {
   const data = JSON.parse(localStorage.getItem("weather"));
   const hours = [];
@@ -324,7 +382,7 @@ function createControls() {
 
   divControls.appendChild(backButton)
 
-  contentDiv.insertBefore(divControls, contentDiv.firstChild);
+  contentDiv.appendChild(divControls);
 }
 
 function goBack() {
@@ -335,4 +393,4 @@ function goBack() {
   daysRowDiv.style.display = "flex";
 }
 
-export { form, loadFiveCards, loadingScreen };
+export { form, loadCards, loadingScreen };
