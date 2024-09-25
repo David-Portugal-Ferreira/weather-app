@@ -396,7 +396,8 @@ function cardRain(todayWeather) {
   const cloudcoverSpan = document.createElement("span");
   cloudcoverSpan.innerText = "Cloud Cover";
   const cloudcover = document.createElement("p");
-  cloudcover.innerText = todayWeather.day.uvindex;
+  cloudcover.innerText = todayWeather.day.cloudcover;
+  weatherUnit(cloudcover, "cloudcover");
   cloudcoverDiv.appendChild(cloudcoverSpan);
   cloudcoverDiv.appendChild(cloudcover);
   rainInfoContent.appendChild(cloudcoverDiv);
