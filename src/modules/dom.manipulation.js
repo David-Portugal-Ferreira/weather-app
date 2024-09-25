@@ -597,7 +597,7 @@ function weatherByHour(index) {
     cardBody.appendChild(cardTemp);
 
     const uvindexDiv = document.createElement("div");
-    const uvindexSpan = document.createElement("div");
+    const uvindexSpan = document.createElement("span");
     uvindexSpan.innerText = "UV Index";
     const uvindex = document.createElement("p");
     uvIndexColor(uvindex, hour.uvindex);

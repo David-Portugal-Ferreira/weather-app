@@ -28,7 +28,7 @@ body {
     align-self: center;
 }
 form input[type=search] {
-    width: 250px;
+    width: 200px;
     border-radius: 15px;
     border-style: none;
 }

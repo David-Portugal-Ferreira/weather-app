@@ -1,4 +1,7 @@
 @import '@fortawesome/fontawesome-free/css/all.css';
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Arvo:ital,wght@0,400;0,700;1,400;1,700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
 
 * {
   font-size: 18px;
@@ -104,6 +107,12 @@ p.current-temp {
   flex-direction: column;
   align-items: center;
 }
+.card-temp-by-hour div > span,
+.card-rain-by-hour div > span,
+.card-wind-by-hour div > span,
+.card-snow-by-hour div > span {
+  font-family: "Arvo";
+}
 
 .controls button {
   width: 100px;
@@ -120,6 +129,13 @@ p.current-temp {
   display: flex;
   justify-content: center;
   gap: 50px;
+}
+.temp-card-header div > p {
+  font-size: 40px;
+  font-family: "Anton", sans-serif, serif, Arial, Helvetica, sans-serif;
+}
+.temp-card-header div > img {
+  height: 100px;
 }
 
 .temp-card-body,
@@ -140,6 +156,14 @@ p.current-temp {
   justify-content: center;
 }
 
+.temp-header,
+.rain-header,
+.wind-header,
+.snow-header,
+.sun-moon-header {
+  font-family: "Arvo";
+}
+
 .temp-info-content,
 .rain-info-content,
 .wind-info-content,
@@ -149,6 +173,9 @@ p.current-temp {
   flex-wrap: wrap;
   justify-content: center;
   gap: 40px;
+  border: 0.3px solid blue;
+  border-radius: 20px;
+  padding: 7px;
 }
 
 .temp-info-content > div,
@@ -159,4 +186,12 @@ p.current-temp {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.temp-info-content span,
+.rain-info-content span,
+.wind-info-content span,
+.snow-info-content span,
+.sun-moon-info-content span{
+  font-family: "Arvo", sans-serif, serif, Arial, Helvetica, sans-serif;
 }
