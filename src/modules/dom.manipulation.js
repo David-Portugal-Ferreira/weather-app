@@ -198,6 +198,7 @@ function loadingScreen(action) {
 byHour.forEach((element, index) => {
   element.addEventListener("click", () => {
     moreWeatherInfo(index);
+    currentSearch.scrollIntoView();
   });
 });
 
