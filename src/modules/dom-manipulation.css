@@ -113,16 +113,24 @@ p.current-temp {
 .card-rain-by-hour div > span,
 .card-wind-by-hour div > span,
 .card-snow-by-hour div > span {
-  font-family: "Arvo", sans-serif, serif, Arial, Helvetica, sans-serif;;
+  font-family: "Arvo", sans-serif, serif, Arial, Helvetica, sans-serif;
 }
 
 .controls button {
   width: 100px;
   height: 30px;
   border-radius: 20px;
+  border-color: #5762D5;
   margin-top: 20px;
+  color: white;
+  background-color: #5762D5;
+  font-family: "Arvo", sans-serif, serif, Arial, Helvetica, sans-serif;
 }
-
+.controls button:hover {
+  color: #5762D5;
+  background-color: white;
+  border-color: white;
+}
 
 
 /* Cards by Hour Styles */

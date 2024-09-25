@@ -147,6 +147,9 @@ button[type=submit] {
 
 .by-hour:hover {
     cursor: pointer;
+    font-size: 20px;
+    font-weight: bold;
+    color: #5762D5;
 }
 
 .current-temp {
