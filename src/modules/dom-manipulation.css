@@ -170,6 +170,7 @@ p.current-temp {
   height: 100px;
 }
 
+.descrip-card-body,
 .temp-card-body,
 .rain-card-body,
 .wind-card-body,
@@ -188,6 +189,7 @@ p.current-temp {
   justify-content: center;
 }
 
+.descrip-header,
 .temp-header,
 .rain-header,
 .wind-header,
@@ -196,6 +198,7 @@ p.current-temp {
   font-family: "Arvo", sans-serif, serif, Arial, Helvetica, sans-serif;;
 }
 
+.descript-info-content,
 .temp-info-content,
 .rain-info-content,
 .wind-info-content,
@@ -221,6 +224,7 @@ p.current-temp {
   align-items: center;
 }
 
+.descript-info-content p,
 .temp-info-content span,
 .rain-info-content span,
 .wind-info-content span,

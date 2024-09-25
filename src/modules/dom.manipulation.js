@@ -217,7 +217,9 @@ function moreInfo(index, isToday) {
   const infoToday = document.createElement("div");
   infoToday.classList = "info-today-card";
 
-  cardTemp(todayWeather, isToday);
+  cardHeader(todayWeather, isToday);
+  cardDescription(todayWeather);
+  cardTemp(todayWeather);
   cardRain(todayWeather);
   if (todayWeather.day.snow > 0) {
     cardSnow(todayWeather);
@@ -229,7 +231,7 @@ function moreInfo(index, isToday) {
   giveWeatherByHourMargin();
 }
 
-function cardTemp(todayWeather, isToday) {
+function cardHeader(todayWeather, isToday) {
   // Card Header
   if (isToday) {
     const cardHeader = document.createElement("div");
@@ -274,6 +276,37 @@ function cardTemp(todayWeather, isToday) {
     contentDiv.appendChild(cardHeader);
   }
 
+}
+
+function cardDescription(todayWeather) {
+  const cardBody = document.createElement("div");
+  cardBody.classList = "descrip-card-body";
+
+  // Temperature Info
+  const rainInfo = document.createElement("div");
+  rainInfo.classList = "descrip-info";
+
+  // Today header
+  const descriptionHeader = document.createElement("div");
+  descriptionHeader.classList = "descrip-header";
+
+  const descriptionHeaderTitle = document.createElement("h2");
+  descriptionHeaderTitle.innerText = "Description";
+  descriptionHeader.appendChild(descriptionHeaderTitle);
+
+  const descriptionInfoContent = document.createElement("div");
+  descriptionInfoContent.classList = "descript-info-content";
+
+  const description = document.createElement("p");
+  description.innerText = todayWeather.day.description;
+  descriptionInfoContent.appendChild(description);
+
+  cardBody.appendChild(descriptionHeader);
+  cardBody.appendChild(descriptionInfoContent);
+  contentDiv.appendChild(cardBody);
+}
+
+function cardTemp(todayWeather) {
   // Card Body
   const cardBody = document.createElement("div");
   cardBody.classList = "temp-card-body";
