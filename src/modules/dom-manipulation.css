@@ -160,7 +160,7 @@ p.current-temp {
   background-color: #F5F5F5;
   border-radius: 20px;
   border: .3px solid #141414;
-  padding: 0px 5px;
+  padding: 0px 15px;
 }
 .temp-card-header div > p {
   font-size: 40px;
