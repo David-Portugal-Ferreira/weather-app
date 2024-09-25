@@ -231,7 +231,7 @@ function moreInfo(index, isToday) {
 }
 
 function cardTemp(todayWeather, isToday) {
-  // Today Card Header
+  // Card Header
   if (isToday) {
     const cardHeader = document.createElement("div");
     cardHeader.classList = "temp-card-header";
@@ -275,7 +275,7 @@ function cardTemp(todayWeather, isToday) {
     contentDiv.appendChild(cardHeader);
   }
 
-  // Today Card Body
+  // Card Body
   const cardBody = document.createElement("div");
   cardBody.classList = "temp-card-body";
 
@@ -331,6 +331,7 @@ function cardTemp(todayWeather, isToday) {
   uvindexSpan.innerText = "UV Index";
   const uvindex = document.createElement("p");
   uvindex.innerText = todayWeather.day.uvindex;
+  uvIndexColor(uvindex, todayWeather.day.uvindex);
   uvindexDiv.appendChild(uvindexSpan);
   uvindexDiv.appendChild(uvindex);
   tempInfoContent.appendChild(uvindexDiv);

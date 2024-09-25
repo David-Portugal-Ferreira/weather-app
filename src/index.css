@@ -52,7 +52,7 @@ button[type=submit] {
     width: 90%;
     font-size: 30px;
     margin-top: 20px;
-    font-family: "Playfair Display", serif;
+    font-family: "Playfair Display", sans-serif, serif, Arial, Helvetica, sans-serif;;
 }
 .days-row {
     display: flex;
@@ -109,7 +109,7 @@ button[type=submit] {
     display: flex;
     justify-content: center;
     gap: 25px;
-    font-family: "Arvo", serif;
+    font-family: "Arvo", sans-serif, serif, Arial, Helvetica, sans-serif;;
 }
 .card-header {
     height: 100px;
@@ -139,5 +139,5 @@ button[type=submit] {
 }
 
 .current-temp {
-    font-family: "Anton", serif;
+    font-family: "Anton", sans-serif, serif, Arial, Helvetica, sans-serif;;
 }

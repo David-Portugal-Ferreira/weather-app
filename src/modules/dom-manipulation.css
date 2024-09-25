@@ -111,7 +111,7 @@ p.current-temp {
 .card-rain-by-hour div > span,
 .card-wind-by-hour div > span,
 .card-snow-by-hour div > span {
-  font-family: "Arvo";
+  font-family: "Arvo", sans-serif, serif, Arial, Helvetica, sans-serif;;
 }
 
 .controls button {
@@ -161,7 +161,7 @@ p.current-temp {
 .wind-header,
 .snow-header,
 .sun-moon-header {
-  font-family: "Arvo";
+  font-family: "Arvo", sans-serif, serif, Arial, Helvetica, sans-serif;;
 }
 
 .temp-info-content,
