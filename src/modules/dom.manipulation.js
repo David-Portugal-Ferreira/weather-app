@@ -92,7 +92,7 @@ function loadSixDays(weatherData) {
   Object.keys(elements).forEach((element) => {
     // TODO - Change 'test' and 'testIndex' names
     elements[element].forEach((test, index) => {
-      elementContent(element, test, weatherData.days[index][element], index);
+      elementContent(element, test, weatherData.days[index + 1][element]);
     });
   });
 }
@@ -554,7 +554,6 @@ function cardOther(todayWeather) {
   const moonPhaseSpan = document.createElement("span");
   moonPhaseSpan.innerText = "Moon Phase";
   const moonPhase = document.createElement("img");
-  // moonPhase.innerText = todayWeather.day.moonphase;
   moonImage(moonPhase, todayWeather.day.moonphase)
   moonPhaseDiv.appendChild(moonPhaseSpan);
   moonPhaseDiv.appendChild(moonPhase);
