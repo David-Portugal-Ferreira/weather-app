@@ -725,9 +725,21 @@ function createControls() {
 
 function goBack() {
   const controlsDiv = document.querySelector(".controls");
-  const cardsByHour = document.querySelectorAll(".card-by-hours");
-  cardsByHour.forEach((element) => contentDiv.removeChild(element));
   contentDiv.removeChild(controlsDiv);
+
+  try {
+    const cardsByHour = document.querySelectorAll(".card-by-hours");
+  cardsByHour.forEach((element) => contentDiv.removeChild(element));
+
+  const cardInfo = document.querySelectorAll("[class*='card-body']");
+  cardInfo.forEach((elements) => contentDiv.removeChild(elements));
+
+  const cardToday = document.querySelector(".temp-card-header");
+  contentDiv.removeChild(cardToday);
+  } catch (err) {
+    console.log(`Something went wrong: ${err}`);
+  }
+  
   daysRowDiv.style.display = "flex";
 }
 
