@@ -90,7 +90,6 @@ function loadSixDays(weatherData) {
   currentSearch.innerText = weatherData.resolvedAddress;
 
   Object.keys(elements).forEach((element) => {
-    // TODO - Change 'test' and 'testIndex' names
     elements[element].forEach((test, index) => {
       elementContent(element, test, weatherData.days[index + 1][element]);
     });
