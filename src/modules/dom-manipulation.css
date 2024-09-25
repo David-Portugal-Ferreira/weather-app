@@ -92,6 +92,8 @@ p.current-temp {
 .card-wind-by-hour,
 .card-snow-by-hour {
   display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 25px;
   margin: 5px;
   padding: 7px;
@@ -173,7 +175,7 @@ p.current-temp {
   flex-wrap: wrap;
   justify-content: center;
   gap: 40px;
-  border: 0.3px solid blue;
+  border: 0.3px solid #141414;
   border-radius: 20px;
   padding: 7px;
 }

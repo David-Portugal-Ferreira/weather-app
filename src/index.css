@@ -10,14 +10,15 @@ body {
 .wrapper {
     display: flex;
     flex-direction: column;
-    background-color: #D8EBF7;
+    background-color: #B8CDF8;
 }
 
 .header {
     display: flex;
     justify-content: space-between;
     height: 50px;
-    background-color: aqua;
+    background-color: #5762D5;
+    color: white;
 }
 .header h2 {
     margin-left: 10px;
@@ -45,12 +46,14 @@ button[type=submit] {
     align-items: center;
 }
 .current-search {
+    color: #141414;
     display: flex;
     justify-content: center;
     align-items: center;
     height: fit-content;
     width: 90%;
     font-size: 30px;
+    font-weight: bold;
     margin-top: 20px;
     font-family: "Playfair Display", sans-serif, serif, Arial, Helvetica, sans-serif;;
 }
@@ -79,7 +82,7 @@ button[type=submit] {
     margin: 25px;
     padding: 5px;
     width: 350px;
-    border: 1px solid red;
+    border: 1px solid #141414;
     border-radius: 20px;
     background-color: #F5F5F5;
 }
@@ -94,7 +97,7 @@ button[type=submit] {
     margin: 25px;
     padding: 5px;
     width: 250px;
-    border: 1px solid red;
+    border: 1px solid #141414;
     border-radius: 20px;
     background-color: #F5F5F5;
 }
@@ -132,7 +135,14 @@ button[type=submit] {
     justify-content: center;
     gap: 50px;
     height: fit-content;
-    background-color: yellowgreen;
+    background-color: #5762D5;
+}
+.author,
+.moon-icons,
+.author a,
+.moon-icons a  {
+    color: white;
+    text-decoration: none;
 }
 
 .by-hour:hover {
