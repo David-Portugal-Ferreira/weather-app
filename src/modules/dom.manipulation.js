@@ -98,37 +98,9 @@ function loadSixDays(weatherData) {
 }
 
 function elementContent(weatherElement, htmlElement, weatherData) {
-  if (weatherElement === "temp") {
-    htmlElement.innerText = `${weatherData}ºC`;
-    return;
-  }
-  if (weatherElement === "tempmin") {
-    htmlElement.innerText = `${weatherData}ºC`;
-    return;
-  }
-  if (weatherElement === "tempmax") {
-    htmlElement.innerText = `${weatherData}ºC`;
-    return;
-  }
   if (weatherElement === "icon") {
     let icon = weatherData;
     htmlElement.src = weather[icon];
-    return;
-  }
-  if (weatherElement === "humidity") {
-    htmlElement.innerText = `${weatherData}%`;
-    return;
-  }
-  if (weatherElement === "precipprob") {
-    htmlElement.innerText = `${weatherData}%`;
-    return;
-  }
-  if (weatherElement === "precip") {
-    htmlElement.innerText = `${weatherData}%`;
-    return;
-  }
-  if (weatherElement === "windspeed") {
-    htmlElement.innerText = `${weatherData} km/h`;
     return;
   }
   if (weatherElement === "winddir") {
@@ -148,6 +120,8 @@ function elementContent(weatherElement, htmlElement, weatherData) {
     convertDayToWeekDay(htmlElement, weatherData);
     return;
   }
+  htmlElement.innerText = weatherData;
+  weatherUnit(htmlElement, weatherElement)
 }
 
 function windDirection(test, windDir) {
@@ -266,6 +240,7 @@ function cardTemp(todayWeather, isToday) {
     const currentTemp = document.createElement("p");
     currentTemp.classList = "temp-current-temp";
     currentTemp.innerText = todayWeather.current.temp;
+    weatherUnit(currentTemp, "temp");
     currentTempDiv.appendChild(currentTemp);
 
     const currentIconDiv = document.createElement("div");
@@ -326,6 +301,7 @@ function cardTemp(todayWeather, isToday) {
   tempminSpan.innerText = "Min";
   const tempmin = document.createElement("p");
   tempmin.innerText = todayWeather.day.tempmin;
+  weatherUnit(tempmin, "tempmin");
   tempminDiv.appendChild(tempminSpan);
   tempminDiv.appendChild(tempmin);
   tempInfoContent.appendChild(tempminDiv);
@@ -335,6 +311,7 @@ function cardTemp(todayWeather, isToday) {
   tempSpan.innerText = "Med";
   const temp = document.createElement("p");
   temp.innerText = todayWeather.day.temp;
+  weatherUnit(temp, "temp");
   tempDiv.appendChild(tempSpan);
   tempDiv.appendChild(temp);
   tempInfoContent.appendChild(tempDiv);
@@ -344,6 +321,7 @@ function cardTemp(todayWeather, isToday) {
   tempmaxSpan.innerText = "Max";
   const tempmax = document.createElement("p");
   tempmax.innerText = todayWeather.day.tempmax;
+  weatherUnit(tempmax, "tempmax");
   tempmaxDiv.appendChild(tempmaxSpan);
   tempmaxDiv.appendChild(tempmax);
   tempInfoContent.appendChild(tempmaxDiv);
@@ -389,6 +367,7 @@ function cardRain(todayWeather) {
   precipSpan.innerText = "Precipitation";
   const precip = document.createElement("p");
   precip.innerText = todayWeather.day.precip;
+  weatherUnit(precip, "precip");
   precipDiv.appendChild(precipSpan);
   precipDiv.appendChild(precip);
   rainInfoContent.appendChild(precipDiv);
@@ -398,6 +377,7 @@ function cardRain(todayWeather) {
   precipProbSpan.innerText = "Probability";
   const precipProb = document.createElement("p");
   precipProb.innerText = todayWeather.day.precipprob;
+  weatherUnit(precipProb, "precipprob");
   precipProbDiv.appendChild(precipProbSpan);
   precipProbDiv.appendChild(precipProb);
   rainInfoContent.appendChild(precipProbDiv);
@@ -407,6 +387,7 @@ function cardRain(todayWeather) {
   humiditySpan.innerText = "Humidity";
   const humidity = document.createElement("p");
   humidity.innerText = todayWeather.day.humidity;
+  weatherUnit(humidity, "humidity");
   humidityDiv.appendChild(humiditySpan);
   humidityDiv.appendChild(humidity);
   rainInfoContent.appendChild(humidityDiv);
@@ -425,6 +406,7 @@ function cardRain(todayWeather) {
   pressureSpan.innerText = "Pressure";
   const pressure = document.createElement("p");
   pressure.innerText = todayWeather.day.pressure;
+  weatherUnit(pressure, "pressure");
   pressureDiv.appendChild(pressureSpan);
   pressureDiv.appendChild(pressure);
   rainInfoContent.appendChild(pressureDiv);
@@ -461,6 +443,7 @@ function cardSnow(todayWeather) {
   snowSpan.innerText = "Snow";
   const snow = document.createElement("p");
   snow.innerText = todayWeather.day.snow;
+  weatherUnit(snow, "snow");
   snowDiv.appendChild(snowSpan);
   snowDiv.appendChild(snow);
   snowInfoContent.appendChild(snowDiv);
@@ -470,6 +453,7 @@ function cardSnow(todayWeather) {
   snowDepthSpan.innerText = "Snow Depth";
   const snowDepth = document.createElement("p");
   snowDepth.innerText = todayWeather.day.snowdepth;
+  weatherUnit(snowDepth, "snowdepth");
   snowDepthDiv.appendChild(snowDepthSpan);
   snowDepthDiv.appendChild(snowDepth);
   snowInfoContent.appendChild(snowDepthDiv);
@@ -506,6 +490,7 @@ function cardWind(todayWeather) {
   windSpeedSpan.innerText = "Wind Speed";
   const windspeed = document.createElement("p");
   windspeed.innerText = todayWeather.day.windspeed;
+  weatherUnit(windspeed, "windspeed");
   windSpeedDiv.appendChild(windSpeedSpan);
   windSpeedDiv.appendChild(windspeed);
   windInfoContent.appendChild(windSpeedDiv);
@@ -605,6 +590,7 @@ function weatherByHour(index) {
     spanTemp.innerText = "Temperature";
     const temp = document.createElement("p");
     temp.innerText = hour.temp;
+    weatherUnit(temp, "temp");
     divTemp.appendChild(spanTemp);
     divTemp.appendChild(temp);
     cardTemp.appendChild(divTemp);
@@ -627,7 +613,8 @@ function weatherByHour(index) {
     const precipSpan = document.createElement("span");
     precipSpan.innerText = "Precip";
     const precip = document.createElement("p");
-    precip.innerText = `${hour.precip}%`;
+    precip.innerText = `${hour.precip}`;
+    weatherUnit(precip, "precip");
     precipDiv.appendChild(precipSpan);
     precipDiv.appendChild(precip);
 
@@ -635,15 +622,17 @@ function weatherByHour(index) {
     const precipProbSpan = document.createElement("span");
     precipProbSpan.innerText = "Probability";
     const precipProb = document.createElement("p");
-    precipProb.innerText = `${hour.precipprob}%`;
+    precipProb.innerText = `${hour.precipprob}`;
+    weatherUnit(precipProb, "precipprob");
     precipProbDiv.appendChild(precipProbSpan);
     precipProbDiv.appendChild(precipProb);
 
     const humidityDiv = document.createElement("div");
     const humiditySpan = document.createElement("span");
-    humiditySpan.innerText = "Humiduty";
+    humiditySpan.innerText = "Humidity";
     const humidity = document.createElement("p");
-    humidity.innerText = `${hour.humidity}%`;
+    humidity.innerText = `${hour.humidity}`;
+    weatherUnit(humidity, "humidity");
     humidityDiv.appendChild(humiditySpan);
     humidityDiv.appendChild(humidity);
 
@@ -652,6 +641,7 @@ function weatherByHour(index) {
     pressureSpan.innerText = "Pressure";
     const pressure = document.createElement("p");
     pressure.innerText = hour.pressure;
+    weatherUnit(pressure, "pressure");
     pressureDiv.appendChild(pressureSpan);
     pressureDiv.appendChild(pressure);
 
@@ -670,6 +660,7 @@ function weatherByHour(index) {
       snowSpan.innerText = "Snow";
       const snow = document.createElement("p");
       snow.innerText = hour.snow;
+      weatherUnit(snow, "snow");
       snowDiv.appendChild(snowSpan);
       snowDiv.appendChild(snow);
 
@@ -678,6 +669,7 @@ function weatherByHour(index) {
       snowDepthSpan.innerText = "Depth";
       const snowDepth = document.createElement("p");
       snowDepth.innerText = hour.snowdepth;
+      weatherUnit(snowDepth, "snowdepth");
       snowDepthDiv.appendChild(snowDepthSpan);
       snowDepthDiv.appendChild(snowDepth);
 
@@ -702,7 +694,9 @@ function weatherByHour(index) {
     const windSpeedSpan = document.createElement("span");
     windSpeedSpan.innerText = "Speed";
     const windSpeed = document.createElement("p");
-    windSpeed.innerText = `${hour.windspeed} KM/H`;
+    windSpeed.innerText = `${hour.windspeed}`;
+    weatherUnit(windSpeed, "windspeed");
+    weatherUnit(windSpeed, "windspeed");
     windSpeedDiv.appendChild(windSpeedSpan);
     windSpeedDiv.appendChild(windSpeed);
 
@@ -771,6 +765,28 @@ function goBack() {
 function giveWeatherByHourMargin() {
   const firstHour = document.querySelector(".card-header-by-hour");
   firstHour.classList.add("first-weather-by-hour");
+}
+
+function weatherUnit(htmlElement, type) {
+  switch(type) {
+    case "temp":
+    case "tempmax":
+    case "tempmin":
+      return htmlElement.innerText += "ºC";
+    case "humidity":
+    case "precipprob":
+    case "cloudcover":
+      return htmlElement.innerText += "%";
+    case "precip":
+      return htmlElement.innerText += " mm";
+    case "snow":
+    case "snowdepth":
+      return htmlElement.innerText += " cm";
+    case "windspeed":
+      return htmlElement.innerText += " km/h";
+    case "pressure":
+      return htmlElement.innerText += " mb";
+  }
 }
 
 export { form, loadCards, loadingScreen };
