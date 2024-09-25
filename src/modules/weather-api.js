@@ -1,7 +1,4 @@
 async function fetchWeatherInfo(city = "tomar") {
-  if( localStorage.getItem("weather")) {
-    return JSON.parse(localStorage.getItem("weather"));
-  }
   try {
     console.log("Entrou na api")
     const response = await fetch(
