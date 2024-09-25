@@ -250,56 +250,56 @@ function moreInfo(index, isToday) {
     cardSnow(todayWeather);
   }
   cardWind(todayWeather);
-  cardOther(todayWeather)
+  cardOther(todayWeather);
   weatherByHour(index);
 
-  giveWeatherByHourMargin()
+  giveWeatherByHourMargin();
 }
 
 function cardTemp(todayWeather, isToday) {
   // Today Card Header
-  if(isToday) {
+  if (isToday) {
     const cardHeader = document.createElement("div");
     cardHeader.classList = "temp-card-header";
-  
+
     const currentTempDiv = document.createElement("div");
     const currentTemp = document.createElement("p");
     currentTemp.classList = "temp-current-temp";
     currentTemp.innerText = todayWeather.current.temp;
     currentTempDiv.appendChild(currentTemp);
-  
+
     const currentIconDiv = document.createElement("div");
     const currentIcon = document.createElement("img");
     currentIcon.classList = "temp-current-icon";
     currentIcon.src = weather[todayWeather.current.icon];
     currentIconDiv.appendChild(currentIcon);
-  
+
     cardHeader.appendChild(currentTempDiv);
     cardHeader.appendChild(currentIconDiv);
-  
+
     contentDiv.appendChild(cardHeader);
   } else {
     const cardHeader = document.createElement("div");
     cardHeader.classList = "temp-card-header";
-  
+
     const currentTempDiv = document.createElement("div");
     const currentTemp = document.createElement("p");
     currentTemp.classList = "temp-current-temp";
     convertDayToWeekDay(currentTemp, todayWeather.day.datetime);
     currentTempDiv.appendChild(currentTemp);
-  
+
     const currentIconDiv = document.createElement("div");
     const currentIcon = document.createElement("img");
     currentIcon.classList = "temp-current-icon";
     currentIcon.src = weather[todayWeather.day.icon];
     currentIconDiv.appendChild(currentIcon);
-  
+
     cardHeader.appendChild(currentTempDiv);
     cardHeader.appendChild(currentIconDiv);
-  
+
     contentDiv.appendChild(cardHeader);
   }
-  
+
   // Today Card Body
   const cardBody = document.createElement("div");
   cardBody.classList = "temp-card-body";
@@ -576,13 +576,11 @@ function cardOther(todayWeather) {
   otherInfo.appendChild(otherInfoContent);
   cardBody.appendChild(otherInfo);
   contentDiv.appendChild(cardBody);
-
 }
 
 function weatherByHour(index) {
   const hours = getHours(index);
   hours.map((hour) => {
-
     const card = document.createElement("div");
     card.classList = "card-by-hours";
 
@@ -594,6 +592,7 @@ function weatherByHour(index) {
     conditions.src = weather[hour.icon];
     cardHeader.appendChild(datetime);
     cardHeader.appendChild(conditions);
+    card.appendChild(cardHeader);
 
     const cardBody = document.createElement("div");
     cardBody.classList = "card-body";
@@ -609,6 +608,7 @@ function weatherByHour(index) {
     divTemp.appendChild(spanTemp);
     divTemp.appendChild(temp);
     cardTemp.appendChild(divTemp);
+    cardBody.appendChild(cardTemp);
 
     const uvindexDiv = document.createElement("div");
     const uvindexSpan = document.createElement("div");
@@ -627,23 +627,23 @@ function weatherByHour(index) {
     const precipSpan = document.createElement("span");
     precipSpan.innerText = "Precip";
     const precip = document.createElement("p");
-    precip.innerText  = `${hour.precip}%`;
+    precip.innerText = `${hour.precip}%`;
     precipDiv.appendChild(precipSpan);
-    precipDiv.appendChild(precip)
+    precipDiv.appendChild(precip);
 
     const precipProbDiv = document.createElement("div");
     const precipProbSpan = document.createElement("span");
-    precipProbSpan.innerText = "Probability"
+    precipProbSpan.innerText = "Probability";
     const precipProb = document.createElement("p");
-    precipProb.innerText  = `${hour.precipprob}%`;
+    precipProb.innerText = `${hour.precipprob}%`;
     precipProbDiv.appendChild(precipProbSpan);
-    precipProbDiv.appendChild(precipProb)
+    precipProbDiv.appendChild(precipProb);
 
     const humidityDiv = document.createElement("div");
     const humiditySpan = document.createElement("span");
-    humiditySpan.innerText = "Humiduty"
+    humiditySpan.innerText = "Humiduty";
     const humidity = document.createElement("p");
-    humidity.innerText  = `${hour.humidity}%`;
+    humidity.innerText = `${hour.humidity}%`;
     humidityDiv.appendChild(humiditySpan);
     humidityDiv.appendChild(humidity);
 
@@ -651,7 +651,7 @@ function weatherByHour(index) {
     const pressureSpan = document.createElement("span");
     pressureSpan.innerText = "Pressure";
     const pressure = document.createElement("p");
-    pressure.innerText  = hour.pressure;
+    pressure.innerText = hour.pressure;
     pressureDiv.appendChild(pressureSpan);
     pressureDiv.appendChild(pressure);
 
@@ -659,35 +659,40 @@ function weatherByHour(index) {
     cardRain.appendChild(precipProbDiv);
     cardRain.appendChild(humidityDiv);
     cardRain.appendChild(pressureDiv);
+    cardBody.appendChild(cardRain);
 
-    const cardSnow = document.createElement("div");
-    cardSnow.classList = "card-snow-by-hour";
+    if (hour.snow > 0) {
+      const cardSnow = document.createElement("div");
+      cardSnow.classList = "card-snow-by-hour";
 
-    const snowDiv = document.createElement("div");
-    const snowSpan = document.createElement("span");
-    snowSpan.innerText = "Snow"
-    const snow = document.createElement("p");
-    snow.innerText  = hour.snow;
-    snowDiv.appendChild(snowSpan);
-    snowDiv.appendChild(snow);
+      const snowDiv = document.createElement("div");
+      const snowSpan = document.createElement("span");
+      snowSpan.innerText = "Snow";
+      const snow = document.createElement("p");
+      snow.innerText = hour.snow;
+      snowDiv.appendChild(snowSpan);
+      snowDiv.appendChild(snow);
 
-    const snowDepthDiv = document.createElement("div");
-    const snowDepthSpan = document.createElement("span");
-    snowDepthSpan.innerText = "Depth"
-    const snowDepth = document.createElement("p");
-    snowDepth.innerText  = hour.snowdepth;
-    snowDepthDiv.appendChild(snowDepthSpan);
-    snowDepthDiv.appendChild(snowDepth);
+      const snowDepthDiv = document.createElement("div");
+      const snowDepthSpan = document.createElement("span");
+      snowDepthSpan.innerText = "Depth";
+      const snowDepth = document.createElement("p");
+      snowDepth.innerText = hour.snowdepth;
+      snowDepthDiv.appendChild(snowDepthSpan);
+      snowDepthDiv.appendChild(snowDepth);
 
-    cardSnow.appendChild(snowDiv);
-    cardSnow.appendChild(snowDepthDiv);
+      cardSnow.appendChild(snowDiv);
+      cardSnow.appendChild(snowDepthDiv);
 
+      cardBody.appendChild(cardSnow);
+    }
+    
     const cardWind = document.createElement("div");
     cardWind.classList = "card-wind-by-hour";
 
     const windDirDiv = document.createElement("div");
     const windDirSpan = document.createElement("span");
-    windDirSpan.innerText = "Wind Dir"
+    windDirSpan.innerText = "Wind Dir";
     const windDir = document.createElement("p");
     windDirection(windDir, hour.winddir);
     windDirDiv.appendChild(windDirSpan);
@@ -697,17 +702,12 @@ function weatherByHour(index) {
     const windSpeedSpan = document.createElement("span");
     windSpeedSpan.innerText = "Speed";
     const windSpeed = document.createElement("p");
-    windSpeed.innerText  = `${hour.windspeed} KM/H`;
+    windSpeed.innerText = `${hour.windspeed} KM/H`;
     windSpeedDiv.appendChild(windSpeedSpan);
     windSpeedDiv.appendChild(windSpeed);
 
     cardWind.appendChild(windDirDiv);
     cardWind.appendChild(windSpeedDiv);
-
-    card.appendChild(cardHeader);
-    cardBody.appendChild(cardTemp);
-    cardBody.appendChild(cardRain);
-    cardBody.appendChild(cardSnow);
     cardBody.appendChild(cardWind);
     card.appendChild(cardBody);
 
@@ -754,17 +754,17 @@ function goBack() {
 
   try {
     const cardsByHour = document.querySelectorAll(".card-by-hours");
-  cardsByHour.forEach((element) => contentDiv.removeChild(element));
+    cardsByHour.forEach((element) => contentDiv.removeChild(element));
 
-  const cardInfo = document.querySelectorAll("[class*='card-body']");
-  cardInfo.forEach((elements) => contentDiv.removeChild(elements));
+    const cardInfo = document.querySelectorAll("[class*='card-body']");
+    cardInfo.forEach((elements) => contentDiv.removeChild(elements));
 
-  const cardToday = document.querySelector(".temp-card-header");
-  contentDiv.removeChild(cardToday);
+    const cardToday = document.querySelector(".temp-card-header");
+    contentDiv.removeChild(cardToday);
   } catch (err) {
     console.log(`Something went wrong: ${err}`);
   }
-  
+
   daysRowDiv.style.display = "flex";
 }
 
