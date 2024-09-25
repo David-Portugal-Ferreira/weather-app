@@ -553,8 +553,9 @@ function cardOther(todayWeather) {
   const moonPhaseDiv = document.createElement("div");
   const moonPhaseSpan = document.createElement("span");
   moonPhaseSpan.innerText = "Moon Phase";
-  const moonPhase = document.createElement("p");
-  moonPhase.innerText = todayWeather.day.moonphase;
+  const moonPhase = document.createElement("img");
+  // moonPhase.innerText = todayWeather.day.moonphase;
+  moonImage(moonPhase, todayWeather.day.moonphase)
   moonPhaseDiv.appendChild(moonPhaseSpan);
   moonPhaseDiv.appendChild(moonPhase);
   otherInfoContent.appendChild(moonPhaseDiv);
@@ -787,6 +788,41 @@ function weatherUnit(htmlElement, type) {
       return htmlElement.innerText += " km/h";
     case "pressure":
       return htmlElement.innerText += " mb";
+  }
+}
+
+function moonImage(htmlElement, moonPhase) {
+  if (moonPhase === 0) {
+    htmlElement.src = moonPhases.new_moon;
+    return
+  }
+  if (moonPhase >= .1 && moonPhase <= .24) {
+    htmlElement.src = moonPhases.waningCrescent;
+    return
+  }
+  if (moonPhase === 0.25) {
+    htmlElement.src = moonPhases.firstQuarter;
+    return
+  }
+  if (moonPhase >= .26 && moonPhase <= .49) {
+    htmlElement.src = moonPhases.waxingGibbous;
+    return
+  }
+  if (moonPhase === .50) {
+    htmlElement.src = moonPhases.full_moon;
+    return
+  }
+  if (moonPhase >= .51 && moonPhase <= .74) {
+    htmlElement.src = moonPhases.waningGibbous;
+    return
+  }
+  if (moonPhase === .75) {
+    htmlElement.src = moonPhases.lastQuarter;
+    return
+  }
+  if (moonPhase >= .76) {
+    htmlElement.src = moonPhases.waningCrescent;
+    return
   }
 }
 
