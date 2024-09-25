@@ -285,7 +285,7 @@ function cardTemp(todayWeather, isToday) {
     const currentTempDiv = document.createElement("div");
     const currentTemp = document.createElement("p");
     currentTemp.classList = "temp-current-temp";
-    currentTemp.innerText = todayWeather.day.datetime;
+    convertDayToWeekDay(currentTemp, todayWeather.day.datetime);
     currentTempDiv.appendChild(currentTemp);
   
     const currentIconDiv = document.createElement("div");
