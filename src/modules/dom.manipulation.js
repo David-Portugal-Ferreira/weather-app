@@ -695,8 +695,7 @@ function weatherByHour(index) {
     const windSpeedSpan = document.createElement("span");
     windSpeedSpan.innerText = "Speed";
     const windSpeed = document.createElement("p");
-    windSpeed.innerText = `${hour.windspeed}`;
-    weatherUnit(windSpeed, "windspeed");
+    windSpeed.innerText = hour.windspeed;
     weatherUnit(windSpeed, "windspeed");
     windSpeedDiv.appendChild(windSpeedSpan);
     windSpeedDiv.appendChild(windSpeed);

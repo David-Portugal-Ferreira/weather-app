@@ -33,10 +33,12 @@ p.current-temp {
 
 /* UV INDEX COLOR */
 .low-uv-index {
+  font-size: 20px;
   color: rgba(0, 128, 0, 0.8);
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6);
 }
 .moderate-uv-index {
+  font-size: 20px;
   color: rgba(255, 255, 0, 0.9);
   text-shadow: -1px -1px 0 #000,
                1px -1px 0 #000,
@@ -44,14 +46,17 @@ p.current-temp {
                1px 1px 0 #000;
 }
 .high-uv-index {
+  font-size: 20px;
   color: rgba(255, 165, 0, 0.9);
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
 }
 .veryhigh-uv-index {
+  font-size: 20px;
   color: rgba(255, 0, 0, 0.9);
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
 }
 .extreme-uv-index {
+  font-size: 20px;
   color: rgba(128, 0, 128, 0.9);
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
 }
@@ -89,6 +94,9 @@ p.current-temp {
 }
 .first-weather-by-hour {
   margin-top: 50px;
+}
+.card-header-by-hour p {
+  font-family: "Arvo", sans-serif, serif, Arial, Helvetica, sans-serif;
 }
 
 .card-body {
