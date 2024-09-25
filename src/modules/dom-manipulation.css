@@ -98,6 +98,10 @@ p.current-temp {
 .card-header-by-hour p {
   font-family: "Arvo", sans-serif, serif, Arial, Helvetica, sans-serif;
 }
+.card-header-by-hour img {
+  height: 60px;
+  width: 60px;
+}
 
 .card-body {
   display: flex;
@@ -241,4 +245,8 @@ p.current-temp {
   display: inline-block;
   height: 50px;
   width: 50px;
+}
+
+.card-header-by-hour img {
+  width: 100px;
 }

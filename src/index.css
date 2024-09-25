@@ -159,3 +159,9 @@ button[type=submit] {
 .uvindex-div p {
     font-size: 20px;
 }
+
+.icon, 
+.current-icon {
+    width: 100px;
+    height: 100px;
+}

@@ -98,8 +98,9 @@ function loadSixDays(weatherData) {
 
 function elementContent(weatherElement, htmlElement, weatherData) {
   if (weatherElement === "icon") {
-    let icon = weatherData;
-    htmlElement.src = weather[icon];
+    let icon = weather[weatherData];
+    console.log(weather["clear-day"])
+    htmlElement.src = icon;
     return;
   }
   if (weatherElement === "winddir") {
