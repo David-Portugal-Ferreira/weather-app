@@ -249,8 +249,9 @@ function moreInfoToday(index) {
   }
   cardWind(todayWeather);
   cardOther(todayWeather)
-
   weatherByHour(index);
+
+  giveWeatherByHourMargin()
 }
 
 function cardTodayTemp(todayWeather) {
@@ -741,6 +742,11 @@ function goBack() {
   }
   
   daysRowDiv.style.display = "flex";
+}
+
+function giveWeatherByHourMargin() {
+  const firstHour = document.querySelector(".card-header-by-hour");
+  firstHour.classList.add("first-weather-by-hour");
 }
 
 export { form, loadCards, loadingScreen };

@@ -68,17 +68,20 @@ p.current-temp {
   display: flex;
   flex-direction: column;
   width: 95%;
-  margin-bottom: 50px;
 }
 .card-header-by-hour {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
+  gap: 100px;
   font-weight: 700;
 }
+.first-weather-by-hour {
+  margin-top: 50px;
+}
+
 .card-body {
   display: flex;
-  flex: 1;
-  justify-content: space-evenly;
+  justify-content: center;
   flex-wrap: wrap;
 }
 .card-temp-by-hour,
@@ -86,17 +89,71 @@ p.current-temp {
 .card-wind-by-hour,
 .card-snow-by-hour {
   display: flex;
-  gap: 10px;
+  gap: 25px;
   margin: 5px;
   padding: 7px;
-  border: 1px solid red;
-  border-radius: 10px;
 }
 
 .card-temp-by-hour  div,
 .card-rain-by-hour div,
 .card-wind-by-hour div,
 .card-snow-by-hour div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.controls button {
+  width: 100px;
+  height: 30px;
+  border-radius: 20px;
+  margin-top: 20px;
+}
+
+
+
+/* Cards by Hour Styles */
+.temp-card-header {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+}
+
+.temp-card-body,
+.rain-card-body,
+.wind-card-body,
+.snow-card-body,
+.sun-moon-card-body {
+  margin: 0 25px;
+}
+
+.temp-info,
+.rain-info,
+.wind-info,
+.snow-info,
+.sun-moon-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.temp-info-content,
+.rain-info-content,
+.wind-info-content,
+.snow-info-content,
+.sun-moon-info-content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 40px;
+}
+
+.temp-info-content > div,
+.rain-info-content > div,
+.wind-info-content > div,
+.snow-info-content > div,
+.sun-moon-info-content > div{
   display: flex;
   flex-direction: column;
   align-items: center;
