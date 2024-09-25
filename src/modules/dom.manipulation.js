@@ -232,17 +232,19 @@ function moreWeatherInfo(index) {
   daysRowDiv.style.display = "none";
   createControls();
   if (index === 0) {
-    moreInfoToday(index);
+    moreInfo(index, true);
+  } else {
+    moreInfo(index, false);
   }
 }
 
-function moreInfoToday(index) {
+function moreInfo(index, isToday) {
   const todayWeather = getWeatherLocalStorage(index);
 
   const infoToday = document.createElement("div");
   infoToday.classList = "info-today-card";
 
-  cardTodayTemp(todayWeather);
+  cardTemp(todayWeather, isToday);
   cardRain(todayWeather);
   if (todayWeather.day.snow > 0) {
     cardSnow(todayWeather);
@@ -254,28 +256,50 @@ function moreInfoToday(index) {
   giveWeatherByHourMargin()
 }
 
-function cardTodayTemp(todayWeather) {
+function cardTemp(todayWeather, isToday) {
   // Today Card Header
-  const cardHeader = document.createElement("div");
-  cardHeader.classList = "temp-card-header";
-
-  const currentTempDiv = document.createElement("div");
-  const currentTemp = document.createElement("p");
-  currentTemp.classList = "temp-current-temp";
-  currentTemp.innerText = todayWeather.current.temp;
-  currentTempDiv.appendChild(currentTemp);
-
-  const currentIconDiv = document.createElement("div");
-  const currentIcon = document.createElement("img");
-  currentIcon.classList = "temp-current-icon";
-  currentIcon.src = weather[todayWeather.current.icon];
-  currentIconDiv.appendChild(currentIcon);
-
-  cardHeader.appendChild(currentTempDiv);
-  cardHeader.appendChild(currentIconDiv);
-
-  contentDiv.appendChild(cardHeader);
-
+  if(isToday) {
+    const cardHeader = document.createElement("div");
+    cardHeader.classList = "temp-card-header";
+  
+    const currentTempDiv = document.createElement("div");
+    const currentTemp = document.createElement("p");
+    currentTemp.classList = "temp-current-temp";
+    currentTemp.innerText = todayWeather.current.temp;
+    currentTempDiv.appendChild(currentTemp);
+  
+    const currentIconDiv = document.createElement("div");
+    const currentIcon = document.createElement("img");
+    currentIcon.classList = "temp-current-icon";
+    currentIcon.src = weather[todayWeather.current.icon];
+    currentIconDiv.appendChild(currentIcon);
+  
+    cardHeader.appendChild(currentTempDiv);
+    cardHeader.appendChild(currentIconDiv);
+  
+    contentDiv.appendChild(cardHeader);
+  } else {
+    const cardHeader = document.createElement("div");
+    cardHeader.classList = "temp-card-header";
+  
+    const currentTempDiv = document.createElement("div");
+    const currentTemp = document.createElement("p");
+    currentTemp.classList = "temp-current-temp";
+    currentTemp.innerText = todayWeather.day.datetime;
+    currentTempDiv.appendChild(currentTemp);
+  
+    const currentIconDiv = document.createElement("div");
+    const currentIcon = document.createElement("img");
+    currentIcon.classList = "temp-current-icon";
+    currentIcon.src = weather[todayWeather.day.icon];
+    currentIconDiv.appendChild(currentIcon);
+  
+    cardHeader.appendChild(currentTempDiv);
+    cardHeader.appendChild(currentIconDiv);
+  
+    contentDiv.appendChild(cardHeader);
+  }
+  
   // Today Card Body
   const cardBody = document.createElement("div");
   cardBody.classList = "temp-card-body";
@@ -708,7 +732,7 @@ function getWeatherLocalStorage(index) {
   if (index === 0) {
     return { day: weather.days[index], current: weather.currentConditions };
   }
-  return weather.days[index];
+  return { day: weather.days[index] };
 }
 
 function createControls() {
