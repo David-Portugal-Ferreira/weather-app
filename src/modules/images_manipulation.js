@@ -21,6 +21,7 @@ import thunderShowersNightImage from "../images/weather/thunder-showers-night.sv
 import thunderImage from "../images/weather/thunder.svg";
 import windImage from "../images/weather/wind.svg";
 
+import new_moon from "../images/moon-phases/lua_nova_freepik.png";
 import waxingCrescent from "../images/moon-phases/crescente_1_freepik.png";
 import firstQuarter from "../images/moon-phases/crescente_2_freepik.png";
 import waxingGibbous from "../images/moon-phases/crescente_3_freepik.png";
@@ -28,7 +29,6 @@ import full_moon from "../images/moon-phases/lua_cheia_freepik.png";
 import waningGibbous from "../images/moon-phases/minguante_1_freepik.png";
 import lastQuarter from "../images/moon-phases/minguante_2_freepik.png";
 import waningCrescent from "../images/moon-phases/minguante_3_freepik.png";
-import new_moon from "../images/moon-phases/lua_nova_freepik.png";
 
 const moonPhases = {
   waxingCrescent,

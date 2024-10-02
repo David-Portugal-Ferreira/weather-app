@@ -99,7 +99,6 @@ function loadSixDays(weatherData) {
 function elementContent(weatherElement, htmlElement, weatherData) {
   if (weatherElement === "icon") {
     let icon = weather[weatherData];
-    console.log(weather["clear-day"])
     htmlElement.src = icon;
     return;
   }
@@ -829,8 +828,8 @@ function moonImage(htmlElement, moonPhase) {
     htmlElement.src = moonPhases.new_moon;
     return
   }
-  if (moonPhase >= .1 && moonPhase <= .24) {
-    htmlElement.src = moonPhases.waningCrescent;
+  if (moonPhase >= .01 && moonPhase <= .24) {
+    htmlElement.src = moonPhases.waxingCrescent;
     return
   }
   if (moonPhase === 0.25) {
